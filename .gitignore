@@ -19,6 +19,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
-
+firebase.config.js
 # Local Netlify folder
 .netlify

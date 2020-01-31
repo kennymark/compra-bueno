@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
+import firebaseConfig from '../firebase.config'
 import router from './router'
 import store from './store'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -12,7 +13,6 @@ import Layout from './components/Layout.vue'
 import Vue2Filters from 'vue2-filters'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
-import firebaseConfig from '../firebase.config'
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 firebase.analytics()
