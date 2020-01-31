@@ -1,32 +1,63 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+    <Nav />
+    <vue-page-transition name="fade">
+      <router-view />
+    </vue-page-transition>
+    <Footer />
+    <CartModal :isCartOpen="$store.state.isCartOpen" />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Nav from './components/Nav'
+import Footer from './components/Footer'
 
-#nav {
-  padding: 30px;
+export default {
+  name: 'App',
+  components: { Nav },
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  mounted() {
+    const cachedCarts = JSON.parse(localStorage.getItem('cart'))
+    this.$store.commit('openCart', false)
+  },
 
-    &.router-link-exact-active {
-      color: #42b983;
+  created() {
+    if (location.href.includes('admin')) {
+      this.isAdmin = true
     }
+  },
+
+  beforeDestroy() {
+    this.$store.commit('openCart', false)
   }
+}
+</script>
+
+<style >
+body {
+  font-family: 'Poppins', sans-serif !important;
+}
+.input {
+  box-shadow: none !important;
+  border: 1px solid #ddd !important;
+  font-family: inherit;
+  font-size: 14px !important;
+  padding: 23px !important;
+}
+.input:focus {
+  border: 1px solid #c0aff1 !important;
+}
+a:hover {
+  text-decoration: none !important;
+}
+h1,
+h2,
+h3 {
+  /* font-family: '', serif !important; */
+  font-weight: bold !important;
+}
+a {
+  color: white;
 }
 </style>

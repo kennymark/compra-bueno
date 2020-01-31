@@ -1,18 +1,31 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <Carousel />
+    <Featured />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Carousel from '../components/products/ProductCarousel'
+import Featured from '../components/products/FeaturedProducts'
+import data from './admin/mens_shoe_dataset.json'
+import firebase from 'firebase'
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
-    HelloWorld
+    Carousel,
+    Featured
+  },
+  mounted() {
+    const db = firebase.firestore().collection('starred_products')
+    const rand = [...new Set(data)]
+    // const diff = uniq(data, 'id').slice(46, 51)
+
+    // diff.map(prod => {
+    //   prod.quantities = 1
+    //   // db.add(prod)
+    // })
   }
 }
 </script>
