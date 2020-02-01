@@ -1,13 +1,13 @@
 <template>
   <Layout>
-    <b-input placeholder="Search..." size="is-medium" @click="search" class="shadow-none" />
+    <b-input placeholder="Search..." size="is-medium" @keypress="search" class="shadow-none" />
     <div class="row">
       <div v-for="(item, key) in products" :key="key" class="col-lg-3 col-md-6 my-3">
         <ProductCard :product="item" />
       </div>
     </div>
     <b-pagination v-if="products.length" v-model="currentPage" :total="rows" class="my-4" />
-    <b-loading :is-full-page="true" :active.sync="isLoading" :can-cancel="true"></b-loading>
+    <b-loading :active.sync="isLoading" :can-cancel="true" />
   </Layout>
 </template>
 
@@ -26,13 +26,12 @@ export default {
       filterProducts: [],
       rows: 0,
       currentPage: 1,
-      limit: 15,
-      isLoading: false
+      limit: 12,
+      isLoading: true
     }
   },
 
   mounted() {
-    this.isLoading = true
     const db = firebase.firestore().collection('products')
     db.get().then(data => (this.rows = +data.size))
     const snapshot = db
@@ -40,14 +39,14 @@ export default {
       .orderBy('name')
       .get()
       .then(data => data.docs)
-    if (!this.products) {
-      this.products = JSON.parse(localStorage.getItem('products'))
-    }
+    // if (!this.products) {
+    //   this.products = JSON.parse(localStorage.getItem('products'))
+    // }
 
     snapshot.then(data => {
       data.map(product => {
-        this.filterProducts.push(product.data())
-        this.products.push(product.data())
+        // this.filterProducts.push(product.data())
+        this.products.push({ id: product.id, ...product.data() })
       })
       this.isLoading = false
     })

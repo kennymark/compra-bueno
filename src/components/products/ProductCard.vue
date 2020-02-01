@@ -27,7 +27,7 @@
         class="border font-weight-bold"
         icon-left="clipboard-plus"
       >Add To Cart</b-button>
-      <h2 class="align-self-center has-text-primary">£{{product.prices_amountmax}}</h2>
+      <h2 class="align-self-center has-text-primary">£{{product.price.max}}</h2>
     </div>
   </span>
 </template>

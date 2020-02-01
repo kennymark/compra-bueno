@@ -15,7 +15,7 @@
           Price:
           <span
             class="font-weight-bold is-size-5"
-          >{{product.prices_amountmax | currency(getCurrency(product.prices_currency))}}</span>
+          >{{product.price.max | currency(getCurrency(product.currency))}}</span>
         </h5>
 
         <p class="has-text-success is-size-5">In stock</p>
@@ -104,7 +104,7 @@ export default {
     getCurrency(curr) {
       if (curr == 'EUR') return '€'
       else if (curr == 'USD') return '$'
-      else if (curr == 'GDP') return '£'
+      else if (curr == 'GBP') return '£'
     },
 
     addToCart(cartItem) {

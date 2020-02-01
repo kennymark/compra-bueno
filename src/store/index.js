@@ -15,8 +15,8 @@ export default new Vuex.Store({
     isCartOpen: false,
     isAdminUser: false,
     currentProduct: null,
-    adminCurrentProduct:null,
-    buyNowProduct:null
+    adminCurrentProduct: null,
+    buyNowProduct: null
   },
   mutations: {
     changeLoggedIn(state, loginState) {
@@ -26,48 +26,48 @@ export default new Vuex.Store({
     addToCart(state, product) {
       const cart = state.cart.find(item => item.id == product.id)
       const buyNowCart = state.buyNowProduct;
-      if (buyNowCart) { buyNowCart.quantities++ }
-      if (cart) { cart.quantities++ }
+      if (buyNowCart) { buyNowCart.quantity++ }
+      if (cart) { cart.quantity++ }
       else {
         state.cart.push(product)
       }
     },
-    
+
     removeFromCart(state, product) {
       let cartIndex = state.cart.indexOf(product)
       state.cart.splice(cartIndex, 1)
     },
-    
+
     incrementQuantity(state, product) {
       this.commit('addToCart', product)
     },
-    
+
     decrementQuantity(state, product) {
       const cart = state.cart.find(item => item.id == product.id)
       const buyNowCart = state.buyNowProduct;
-      
-      if(buyNowCart !=  null){
-       if (buyNowCart ) { buyNowCart.quantities-- }
-       if (buyNowCart.quantities = 1 ) buyNowCart.quantities = 1
+
+      if (buyNowCart != null) {
+        if (buyNowCart) { buyNowCart.quantity-- }
+        if (buyNowCart.quantity = 1) buyNowCart.quantity = 1
       }
-      
-      if (cart) { cart.quantities-= 1}
-      if (cart.quantities <= 1) cart.quantities = 1
+
+      if (cart) { cart.quantity -= 1 }
+      if (cart.quantity <= 1) cart.quantity = 1
     },
 
     openCart(state, product) {
       state.isCartOpen = product
     },
-    
-    setCurrentProduct(state, product){
-    state.currentProduct = product
+
+    setCurrentProduct(state, product) {
+      state.currentProduct = product
     },
-    
-    setAdminCurrentProduct(state, product){
+
+    setAdminCurrentProduct(state, product) {
       state.adminCurrentProduct = product
     },
-  
-    setBuyNow(state,product){
+
+    setBuyNow(state, product) {
       state.buyNowProduct = product
     }
   },
@@ -75,13 +75,13 @@ export default new Vuex.Store({
     getCartCount(state, getters) {
       return state.cart.length
     },
-  totalPrice(state) {
-    let total = 0;
-    state.cart.map((item) => {
-        total += (item.prices_amountmax * item.quantities);
-    });
-    return total;
-  }
+    totalPrice(state) {
+      let total = 0;
+      state.cart.map((item) => {
+        total += (item.price.max * item.quantity);
+      });
+      return total;
+    }
   },
   modules: {
   },

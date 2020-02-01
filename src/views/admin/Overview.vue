@@ -23,7 +23,7 @@
             class="border rounded-lg my-2 ro w-100 p-3"
           >
             <p>{{product.name | capitalize | truncate(60)}}</p>
-            <p>{{product.prices_amountmax | currency}}</p>
+            <p>{{product.price.max | currency}}</p>
           </div>
         </div>
       </div>

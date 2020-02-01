@@ -38,9 +38,9 @@ export default {
       columns: [
         { label: 'Name', field: 'name' },
         { label: 'Brand', field: 'brand' },
-        { label: 'Price', field: 'prices_amountmax' },
-        { label: 'On Sale', field: 'prices_issale' },
-        { label: 'Quantities', field: 'prices_issale' },
+        { label: 'Price', field: 'price.max' },
+        { label: 'On Sale', field: 'price.sale' },
+        { label: 'Quantity', field: 'quantity' },
         { label: 'Added', field: 'dateadded' },
         { label: 'Updated', field: 'dateupdated' }
       ],

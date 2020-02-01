@@ -1,6 +1,6 @@
 <template>
   <Layout>
-   <h3>My Orders</h3>
+    <h3>My Orders</h3>
   </Layout>
 </template>
 

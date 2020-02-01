@@ -18,7 +18,6 @@ export default {
   components: { Nav },
 
   mounted() {
-    const cachedCarts = JSON.parse(localStorage.getItem('cart'))
     this.$store.commit('openCart', false)
   },
 

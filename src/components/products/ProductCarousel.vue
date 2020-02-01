@@ -1,41 +1,42 @@
 <template>
-  <b-carousel
-    :arrow="arrow"
-    :arrow-both="arrowBoth"
-    :arrow-hover="arrowHover"
-    :icon-pack="iconPack"
-    :icon-prev="iconPrev"
-    :icon-next="iconNext"
-    :icon-size="iconSize"
-  >
-    <b-carousel-item v-for="(carousel, i) in carousels" :key="i">
-      <section :class="`hero is-medium is-${carousel.color}`">
-        <div class="hero-body has-text-centered">
-          <h1 class="title">{{carousel.title}} hey</h1>
-        </div>
-      </section>
+  <b-carousel :arrow="arrow" :arrow-both="arrowBoth" :has-drag="true" :interval="interval">
+    <b-carousel-item v-for="(product, i) in products" :key="i" style="height:530px">
+      <div @click="viewProduct(product)" class="m-auto">
+        <img :src="product.imageurls" :alt="product.name" class="m-auto" />
+        <h1 class="m-3 is-size-5">{{product.name}}</h1>
+      </div>
     </b-carousel-item>
   </b-carousel>
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
   components: {},
   data() {
     return {
+      products: [],
       arrow: true,
-      arrowBoth: false,
-      arrowHover: false,
-      iconPack: 'mdi',
-      iconPrev: 'arrow-left',
-      iconNext: 'arrow-right',
-      iconSize: '',
-      carousels: [
-        { title: 'Slide 1', color: 'info' },
-        { title: 'Slide 2', color: 'success' },
-        { title: 'Slide 3', color: 'warning' },
-        { title: 'Slide 4', color: 'danger' }
-      ]
+      animated: 'fade',
+      arrowBoth: true,
+      interval: 3000
+    }
+  },
+
+  mounted() {
+    const db = firebase.firestore().collection('starred_products')
+    const snapshot = db.get().then(data => data.docs)
+
+    snapshot.then(data => {
+      data.map(product => {
+        this.products.push({ id: product.id, ...product.data() })
+      })
+    })
+  },
+  methods: {
+    viewProduct(product) {
+      this.$store.commit('setCurrentProduct', product)
+      this.$router.push('product')
     }
   }
 }
@@ -44,5 +45,10 @@ export default {
 <style lang="scss" scoped>
 .slide {
   height: 400px;
+}
+.carousel-item {
+  display: flex;
+  align-self: center;
+  margin: 0 auto;
 }
 </style>

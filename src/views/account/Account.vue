@@ -25,9 +25,10 @@
 
     <div class="row mt-5">
       <div
+        v-for="(option,key) in accountOptions"
         :key="key"
         class="col-lg p-3 rounded-lg border shadow-sm m-3"
-        v-for="(option,key) in accountOptions"
+        @click="visitPage(option.link)"
       >
         <h5 class="is-size-5 text-center font-weight-bold">{{option.title | capitalize}}</h5>
         <div class="details mt-3 d-flex flex-row">
@@ -70,7 +71,7 @@ export default {
   },
   methods: {
     visitPage(link) {
-      // this.$router.push('account/' + link)
+      this.$router.push(link)
     }
   }
 }

@@ -63,6 +63,7 @@
 <script>
 import { Card, createToken } from 'vue-stripe-elements-plus'
 import CartProduct from '../components/products/CartProduct'
+import fb from 'firebase'
 export default {
   name: 'Checkout',
   components: { CartProduct, Card },
@@ -91,22 +92,32 @@ export default {
   methods: {
     parseCart() {
       const newCart = []
-      this.cart.map(product => {
-        newCart.push(
-          Object.assign({}, { id: product.id, quantity: product.quantities })
-        )
-      })
-      return newCart
+      if (this.buyNowProduct) {
+        return {
+          id: this.buyNowProduct.id,
+          quantity: this.buyNowProduct.quantity
+        }
+      } else {
+        this.cart.map(product => {
+          newCart.push(
+            Object.assign({}, { id: product.id, quantity: product.quantity })
+          )
+        })
+        return newCart
+      }
     },
     pay() {
       const url =
         'https://us-central1-e-commerce-1ac62.cloudfunctions.net/checkout'
+      const user = fb.auth().currentUser
+
       createToken().then(data => {
         const productInfo = {
           token: data.token,
-          form: this.form,
-          cart: parseCart(),
-          total: this.cartTotal
+          data: this.form,
+          cart: this.parseCart(),
+          total: this.cartTotal,
+          email: user.email
         }
         fetch(url, { method: 'post', body: JSON.stringify(productInfo) })
           .then(res => res.json())

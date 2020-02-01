@@ -25,7 +25,7 @@
             </p>
             <p class="control">
               <button class="button">
-                <span>{{product.quantities}}</span>
+                <span>{{product.quantity}}</span>
               </button>
             </p>
             <p class="control">
@@ -36,9 +36,7 @@
       </p>
       <p class="text-secondary">
         Price
-        <span
-          class="font-weight-bold"
-        >£{{(product.prices_amountmax * product.quantities).toFixed(2)}}</span>
+        <span class="font-weight-bold">£{{(product.price.max * product.quantity).toFixed(2)}}</span>
       </p>
     </div>
   </div>
@@ -49,14 +47,14 @@ export default {
   name: 'CartProduct',
   props: ['length', 'product'],
   methods: {
-    increment(item) {
-      this.$store.commit('incrementQuantity', item)
+    increment(product) {
+      this.$store.commit('incrementQuantity', product)
     },
-    decrease(item) {
-      this.$store.commit('decrementQuantity', item)
+    decrease(product) {
+      this.$store.commit('decrementQuantity', product)
     },
-    removeFromCart(item) {
-      this.$store.commit('removeFromCart', item)
+    removeFromCart(product) {
+      this.$store.commit('removeFromCart', product)
     }
   }
 }

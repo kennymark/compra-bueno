@@ -25,10 +25,10 @@
             <b-field label="Prices" />
             <div class="row">
               <div class="col">
-                <b-input id="price_max" v-model="product.prices_amountmin" />
+                <b-input id="price_max" v-model="product.price.min" />
               </div>
               <div class="col">
-                <b-input id="price_min" v-model="product.prices_amountmax" />
+                <b-input id="price_min" v-model="product.price.max" />
               </div>
             </div>
           </div>
