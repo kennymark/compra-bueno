@@ -1,5 +1,5 @@
 <template>
-  <b-navbar class="border-bottom">
+  <b-navbar class="border-bottom fixed-top">
     <template slot="brand">
       <b-navbar-item tag="router-link" to="/" class="has-text-primary">CompraBueno</b-navbar-item>
     </template>

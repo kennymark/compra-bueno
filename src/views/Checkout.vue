@@ -79,6 +79,8 @@ export default {
         country: null,
         address: null,
         address_line_2: null,
+        city: 'chester',
+        county: 'cheshire',
         post_code: null,
         card_name: null
       }
@@ -121,7 +123,19 @@ export default {
         }
         fetch(url, { method: 'post', body: JSON.stringify(productInfo) })
           .then(res => res.json())
-          .then(console.log)
+          .then(data => {
+            if (data.payment.captured) {
+              this.$buefy.notification.open({
+                message: 'Payment successfull, please check your email',
+                type: 'is-success'
+              })
+            } else {
+              this.$buefy.notification.open({
+                message: 'Payment failed, please try again later',
+                type: 'is-danger'
+              })
+            }
+          })
       })
     }
   }

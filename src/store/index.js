@@ -38,6 +38,10 @@ export default new Vuex.Store({
       state.cart.splice(cartIndex, 1)
     },
 
+    removeAllFromCart(state) {
+      state.cart = []
+    },
+
     incrementQuantity(state, product) {
       this.commit('addToCart', product)
     },

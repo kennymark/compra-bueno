@@ -17,6 +17,7 @@ import AccountOrders from '../views/account/Orders'
 import AccountSecurity from '../views/account/Security'
 import AccountAddressPayment from '../views/account/AddressPayments'
 
+import PageNotFound from '../views/PageNotFound'
 
 
 const routes = [
@@ -48,7 +49,8 @@ const routes = [
   {
     path: '/about', name: 'about',
     component: () => import('../views/About.vue')
-  }
+  },
+  { path: '*', component: PageNotFound }
 ]
 
 const router = new VueRouter({
