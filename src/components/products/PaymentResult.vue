@@ -31,9 +31,8 @@ export default {
   },
   methods: {
     clearCart() {
-      this.$store.commit('openCart', false)
       this.$store.commit('removeAllFromCart')
-
+      this.$store.commit('openCart', false)
       this.$router.push('/')
     }
   }

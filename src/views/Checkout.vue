@@ -119,17 +119,18 @@ export default {
           data: this.form,
           cart: this.parseCart(),
           total: this.cartTotal,
-          email: user.email
+          email: user.email,
+          user_id: user.uid
         }
         fetch(url, { method: 'post', body: JSON.stringify(productInfo) })
           .then(res => res.json())
           .then(data => {
-            if (data.payment.captured) {
+            if (data) {
               this.$buefy.notification.open({
                 message: 'Payment successfull, please check your email',
                 type: 'is-success'
               })
-            } else {
+            } else if (data.error) {
               this.$buefy.notification.open({
                 message: 'Payment failed, please try again later',
                 type: 'is-danger'

@@ -1,6 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin')
-const stripe = require('stripe')('sk_test_RDF8NobT5x5gUJ4mhGAIVGW600KSVRKSG1')
+const stripe = require('stripe')('sk_test_RDF8NobT5x5gUJ4mhGAIVGW600KSVRKSG1', { maxNetworkRetries: 2, })
 const cors = require('cors')
 const express = require('express')
 const app = express()
@@ -13,8 +13,6 @@ const orders = admin.firestore().collection('orders')
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
-console.log(functions.config())
 
 async function getTotal(cart) {
   let total = 0
@@ -40,6 +38,9 @@ async function chargeMoney(data, total) {
     source: data.token.id,
     description: `Payment by ${data.email}`,
     receipt_email: data.email,
+    metadata: {
+      user_id: data.user_id
+    },
     shipping: {
       name: data.data.card_name,
       address: {
@@ -55,12 +56,16 @@ async function chargeMoney(data, total) {
 
 
 async function createOrder(data) {
-  orders.add({
-    total: data.total,
-    stripe_id: data.payment.id,
+  console.log(data)
+  return await orders.add({
+    total: data.amount,
+    stripe_id: data.id,
     fufilled: false,
-    created_at: data.payment.created,
-    currency: data.payment.currency
+    created_at: data.created,
+    currency: data.currency,
+    payment_method: data.payment_method,
+    shipping: data.shipping,
+    user_id: data.metadata.user_id
   })
 }
 
@@ -68,14 +73,15 @@ async function createOrder(data) {
 app.route('*')
   .get((_, res) => res.send('Welcome to the CompraBueno API'))
   .post(async (req, res) => {
-    // const parsedBody = JSON.parse(req.body) || req.body
-    const unparsed = req.body
+    const unparsed = JSON.parse(req.body)
     try {
       const resolvedCart = await resolveCart(unparsed)
       const total = await getTotal(resolvedCart)
       const payment = await chargeMoney(unparsed, total)
-      console.log({ total, payment })
-      res.status(201).json(payment)
+      const order = await createOrder(payment)
+      const { captured, created, currency, amount } = payment
+      res.status(201).json({ captured, created, currency, amount })
+      // console.log({ total, payment, order })
     } catch (error) {
       console.log('Error has happened', error)
       res.status(401).json({ error })
