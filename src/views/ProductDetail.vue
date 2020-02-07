@@ -2,7 +2,7 @@
   <Layout>
     <div class="row">
       <div
-        class="col-lg border rounded-lg d-flex m-3 justify-content-center"
+        class="col-lg bg-white shadow-sm border rounded-lg d-flex m-3 justify-content-center"
         style="max-height:500px"
       >
         <img
@@ -19,9 +19,7 @@
 
         <h5 class="my-3">
           Price:
-          <span
-            class="font-weight-bold is-size-5"
-          >{{ product.price.max | currency(getCurrency(product.currency)) }}</span>
+          <span class="font-weight-bold is-size-5">{{ product.price.max | currency('£') }}</span>
         </h5>
 
         <p class="has-text-success is-size-5">
@@ -42,14 +40,14 @@
 
         <div class="buttons my-3">
           <b-button
-            class="border mr-3 font-weight-bold"
-            type="is-white"
+            class="border mr-3 shadow has-text-weight-bold"
+            type="is-dark"
             @click="addToCart(product)"
           >
             Add To Cart
           </b-button>
           <b-button
-            type="is-primary font-weight-bold"
+            type="is-warning has-text-weight-bold shadow"
             @click="buyNow(product)"
           >
             Buy Now
@@ -118,7 +116,7 @@
       <div
         v-for="(review,key) in product.reviews"
         :key="key"
-        class="my-2 rounded border p-3"
+        class="my-2 shadow-sm rounded border p-3"
       >
         <h6 class="font-weight-bold text-dark">
           {{ review.username }} - {{ review.title }}
@@ -155,12 +153,6 @@ export default {
       this.readMoreClicked
         ? (this.descriptionLength = Infinity)
         : (this.descriptionLength = 400)
-    },
-
-    getCurrency(curr) {
-      if (curr == 'EUR') return '€'
-      else if (curr == 'USD') return '$'
-      else if (curr == 'GBP') return '£'
     },
 
     addToCart(cartItem) {

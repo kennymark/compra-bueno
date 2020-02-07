@@ -1,10 +1,6 @@
-
 <template>
-  <Layout>
-    <h3>Security Settings</h3>
-  </Layout>
+  <Layout />
 </template>
-
 
 <script>
 export default {}

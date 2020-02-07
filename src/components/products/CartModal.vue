@@ -7,13 +7,31 @@
     :height="400"
     scroll="keep"
   >
-    <div v-for="(product, key) in cart" :key="key" class="border-bottom bg-white px-5 py-2">
-      <cart-product :length="cart.length" :product="product"></cart-product>
+    <div
+      v-for="(product, key) in cart"
+      :key="key"
+      class="border-bottom bg-white px-5 py-2"
+    >
+      <cart-product
+        :length="cart.length"
+        :product="product"
+      />
     </div>
-    <h5 v-if="!cart.length" class="text-center m-3 border-0">Cart is Empty</h5>
+    <h5
+      v-if="!cart.length"
+      class="text-center m-3 border-0"
+    >
+      Cart is Empty
+    </h5>
 
     <div class="w-100 p-2 border-top">
-      <b-button type="is-primary" class="float-right font-weight-bold" @click="checkOut">Checkout</b-button>
+      <b-button
+        type="is-primary"
+        class="float-right font-weight-bold"
+        @click="checkOut"
+      >
+        Checkout
+      </b-button>
     </div>
   </b-modal>
 </template>

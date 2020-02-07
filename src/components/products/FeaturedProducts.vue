@@ -1,12 +1,24 @@
 <template>
   <Layout>
-    <h3 class="is-size-3">Featured</h3>
+    <h3 class="is-size-3">
+      Featured
+    </h3>
     <div class="row">
-      <div v-for="(product, key) in products" :key="key" class="col-lg-3 col-md-4 col-sm-6 my-2">
-        <Product :product="product" @click="viewProduct(product)" />
+      <div
+        v-for="(product, key) in products"
+        :key="key"
+        class="col-lg-3 col-md-4 col-sm-6 my-2"
+      >
+        <Product
+          :product="product"
+          @click="viewProduct(product)"
+        />
       </div>
     </div>
-    <b-loading :active.sync="isLoading" :can-cancel="true" />
+    <b-loading
+      :active.sync="isLoading"
+      :can-cancel="true"
+    />
   </Layout>
 </template>
 

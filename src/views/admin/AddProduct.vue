@@ -13,7 +13,6 @@
           :src="product.imageurls.split(',')[0] || product.imageurls"
           class="img-fluid"
           alt
-          srcset
         >
         <div class="buttons my-3">
           <b-button
@@ -67,7 +66,7 @@
             >
               <div class="col-md">
                 <b-input
-                  :id="value.toString()+ Math.random().toString()"
+                  :id="value.toString()+ Math.random()"
                   v-model="feature.key"
                 />
               </div>
@@ -86,7 +85,7 @@
               type="is-primary"
               class="mr-2"
             >
-              Submit
+              Add
             </b-button>
             <b-button
               native-type="reset"
@@ -139,7 +138,7 @@ export default {
   data() {
     return {
       editor: null,
-      product: this.$store.state.adminCurrentProduct,
+      product: {},
       form: {
         name: '',
         name: '',
@@ -168,7 +167,7 @@ export default {
         new Underline(),
         new History()
       ],
-      content: this.product.descriptions[0].value
+      content: ''
     })
   },
   beforeDestroy() {

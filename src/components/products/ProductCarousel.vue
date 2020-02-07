@@ -1,9 +1,27 @@
 <template>
-  <b-carousel :arrow="arrow" :arrow-both="arrowBoth" :has-drag="true" :interval="interval">
-    <b-carousel-item v-for="(product, i) in products" :key="i" style="height:530px">
-      <div @click="viewProduct(product)" class="m-auto">
-        <img :src="product.imageurls" :alt="product.name" class="m-auto" />
-        <h1 class="m-3 is-size-5">{{product.name}}</h1>
+  <b-carousel
+    :arrow="arrow"
+    :arrow-both="arrowBoth"
+    :has-drag="true"
+    :interval="interval"
+  >
+    <b-carousel-item
+      v-for="(product, i) in products"
+      :key="i"
+      style="height:530px"
+    >
+      <div
+        class="m-auto"
+        @click="viewProduct(product)"
+      >
+        <img
+          :src="product.imageurls"
+          :alt="product.name"
+          class="m-auto"
+        >
+        <h1 class="m-3 is-size-5">
+          {{ product.name }}
+        </h1>
       </div>
     </b-carousel-item>
   </b-carousel>

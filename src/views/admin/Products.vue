@@ -1,7 +1,14 @@
 <template>
   <Layout>
-    <h3 class="is-size-3 mb-3">Products</h3>
-    <b-input v-model="query" placeholder="Search..." size="is-medium" class="my-4" />
+    <h3 class="is-size-3 mb-3">
+      Products
+    </h3>
+    <b-input
+      v-model="query"
+      placeholder="Search..."
+      size="is-medium"
+      class="my-4"
+    />
 
     <vue-good-table
       class="border-0 bg-white rounded-lg"

@@ -1,21 +1,39 @@
 <template>
   <div class="container w-50 my-5">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+    <h1 class="h3 mb-3 font-weight-normal">
+      Please sign up
+    </h1>
 
     <form @submit="signup">
       <div class="form-group">
         <div>
-          <small>{{error}}</small>
+          <small>{{ error }}</small>
         </div>
         <label for="email">Email address</label>
-        <b-input type="email" size="is-medium" id="email" v-model="form.email" />
+        <b-input
+          id="email"
+          v-model="form.email"
+          type="email"
+          size="is-medium"
+        />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <b-input type="password" size="is-medium" id="password" v-model="form.password" />
+        <b-input
+          id="password"
+          v-model="form.password"
+          type="password"
+          size="is-medium"
+        />
       </div>
 
-      <b-button type="is-primary" size="is-medium" native-type="submit">Submit</b-button>
+      <b-button
+        type="is-primary"
+        size="is-medium"
+        native-type="submit"
+      >
+        Submit
+      </b-button>
     </form>
   </div>
 </template>

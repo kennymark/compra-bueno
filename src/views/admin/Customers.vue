@@ -1,9 +1,14 @@
 <template>
   <Layout>
-    <h3 class="is-size-3 mb-3">Customers</h3>
+    <h3 class="is-size-3 mb-3">
+      Customers
+    </h3>
     <div class="row">
       <div class="col-lg">
-        <vue-good-table :columns="columns" :rows="rows" />
+        <vue-good-table
+          :columns="columns"
+          :rows="rows"
+        />
       </div>
     </div>
   </Layout>

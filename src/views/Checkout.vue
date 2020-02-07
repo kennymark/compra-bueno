@@ -1,51 +1,114 @@
 <template>
   <div class="container">
-    <h3 class="my-3 is-size-4">Your Cart</h3>
+    <h3 class="my-3 is-size-4">
+      Your Cart
+    </h3>
     <div class="row">
-      <div class="col-md" v-if="!buyNowProduct">
-        <div v-for="(item, key) in cart" :key="key">
-          <CartProduct :length="cart" :product="item" class="border-bottom" />
+      <div
+        v-if="!buyNowProduct"
+        class="col-md"
+      >
+        <div
+          v-for="(item, key) in cart"
+          :key="key"
+        >
+          <CartProduct
+            :length="cart"
+            :product="item"
+            class="border-bottom"
+          />
         </div>
       </div>
 
-      <div class="col-md" v-if="buyNowProduct">
-        <CartProduct :length="cart" :product="buyNowProduct" />
+      <div
+        v-if="buyNowProduct"
+        class="col-md"
+      >
+        <CartProduct
+          :length="cart"
+          :product="buyNowProduct"
+        />
       </div>
 
-      <div class="col-md border rounded p-3 m-3" style="max-height:710px">
+      <div
+        class="col-md border rounded p-3 m-3"
+        style="max-height:710px"
+      >
         <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
-          <h4 class="font-weight-bold">Pay</h4>
-          <h5 class="font-weight-bold is-size-6">Total: {{ cartTotal| currency}}</h5>
+          <h4 class="font-weight-bold">
+            Pay
+          </h4>
+          <h5 class="font-weight-bold is-size-6">
+            Total: {{ cartTotal| currency }}
+          </h5>
         </div>
 
         <div>
-          <label for="promo-code" class="text-muted is-size-7">Promo Code</label>
-          <b-input id="promo-code" v-model="form.promo_code" />
+          <label
+            for="promo-code"
+            class="text-muted is-size-7"
+          >Promo Code</label>
+          <b-input
+            id="promo-code"
+            v-model="form.promo_code"
+          />
         </div>
 
         <div class="my-2">
-          <label for="promo-code" class="text-muted is-size-7">Card Name</label>
-          <b-input id="card-name" v-model="form.card_name" />
+          <label
+            for="promo-code"
+            class="text-muted is-size-7"
+          >Card Name</label>
+          <b-input
+            id="card-name"
+            v-model="form.card_name"
+          />
         </div>
 
         <div class="my-2">
-          <label for="address" class="text-muted is-size-7">Address</label>
-          <b-input id="address" v-model="form.address" />
+          <label
+            for="address"
+            class="text-muted is-size-7"
+          >Address</label>
+          <b-input
+            id="address"
+            v-model="form.address"
+          />
         </div>
 
         <div class="my-2">
-          <label for="address-line-2" class="text-muted is-size-7">Address Line 2</label>
-          <b-input id="address-line-2" v-model="form.address_line_2" />
+          <label
+            for="address-line-2"
+            class="text-muted is-size-7"
+          >Address Line 2</label>
+          <b-input
+            id="address-line-2"
+            v-model="form.address_line_2"
+          />
         </div>
 
         <div class="my-2">
-          <label for="post-code" class="text-muted is-size-7">Postcode</label>
-          <b-input id="post-code" size="is-medium" v-model="form.post_code" />
+          <label
+            for="post-code"
+            class="text-muted is-size-7"
+          >Postcode</label>
+          <b-input
+            id="post-code"
+            v-model="form.post_code"
+            size="is-medium"
+          />
         </div>
 
         <div class="my-2">
-          <label for="address" class="text-muted is-size-7">Country</label>
-          <b-input id="country" placeholder="United Kingdom" v-model="form.country" />
+          <label
+            for="address"
+            class="text-muted is-size-7"
+          >Country</label>
+          <b-input
+            id="country"
+            v-model="form.country"
+            placeholder="United Kingdom"
+          />
         </div>
         <card
           class="complete mt-3 border p-3 rounded shadow-sm"
@@ -54,7 +117,14 @@
           @change="complete = $event.complete"
         />
 
-        <b-button type="is-primary" class="my-3" @click="pay" :disabled="!complete">Pay with card</b-button>
+        <b-button
+          type="is-primary"
+          class="my-3"
+          :disabled="!complete"
+          @click="pay"
+        >
+          Pay with card
+        </b-button>
       </div>
     </div>
   </div>

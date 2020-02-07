@@ -7,12 +7,20 @@
       :width="840"
       :height="400"
     >
-      <h3 class="is-size-4">Payment Successfull</h3>
+      <h3 class="is-size-4">
+        Payment Successfull
+      </h3>
 
       <p>You have sucessfully purchased</p>
 
       <div class="w-100 p-2 border-top">
-        <b-button type="is-primary" class="float-right font-weight-bold" @click="clearCart">Ok</b-button>
+        <b-button
+          type="is-primary"
+          class="float-right font-weight-bold"
+          @click="clearCart"
+        >
+          Ok
+        </b-button>
       </div>
     </b-modal>
   </Layout>

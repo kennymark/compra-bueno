@@ -1,17 +1,24 @@
 <template>
-  <div class="row" v-if="length">
+  <div
+    v-if="length"
+    class="row"
+  >
     <div class="col-3 d-flex justify-content-center align-content-center">
-      <img :src="product.imageurls.split(',')[0] || product.imageurls" class="img-fluid" alt />
+      <img
+        :src="product.imageurls.split(',')[0] || product.imageurls"
+        class="img-fluid"
+        alt
+      >
     </div>
     <div class="offset-2 col p-3">
       <h5 class="font-weight-bold text-capitalize">
-        {{product.title }}
+        {{ product.title }}
         <span class="float-right">
           <b-button
-            @click="removeFromCart(product)"
             size="is-small"
             icon-left="delete"
             rounded
+            @click="removeFromCart(product)"
           >Delete</b-button>
         </span>
       </h5>
@@ -21,22 +28,28 @@
         <span class="font-weight-bold text-dark">
           <div class="field has-addons my-3">
             <p class="control">
-              <button class="button" @click="increment(product)">+</button>
+              <button
+                class="button"
+                @click="increment(product)"
+              >+</button>
             </p>
             <p class="control">
               <button class="button">
-                <span>{{product.quantity}}</span>
+                <span>{{ product.quantity }}</span>
               </button>
             </p>
             <p class="control">
-              <button class="button" @click="decrease(product)">-</button>
+              <button
+                class="button"
+                @click="decrease(product)"
+              >-</button>
             </p>
           </div>
         </span>
       </p>
       <p class="text-secondary">
         Price
-        <span class="font-weight-bold">£{{(product.price.max * product.quantity).toFixed(2)}}</span>
+        <span class="font-weight-bold">£{{ (product.price.max * product.quantity).toFixed(2) }}</span>
       </p>
     </div>
   </div>

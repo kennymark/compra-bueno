@@ -1,12 +1,18 @@
 <template>
   <Layout>
-    <h3 class="is-size-3">My Account</h3>
+    <h3 class="is-size-3">
+      My Account
+    </h3>
 
     <div class="row mt-5 mb-4">
       <div class="col-lg d-flex justify-content-center p-3">
         <h3 class="is-size-5 font-weight-light">
           You have spent
-          <b-icon icon="cash-multiple" size="is-medium" type="is-success" />
+          <b-icon
+            icon="cash-multiple"
+            size="is-medium"
+            type="is-success"
+          />
           <div class="details mt-3">
             <strong class="is-size-3">£3987</strong> this month
           </div>
@@ -15,7 +21,11 @@
       <div class="col-lg d-flex justify-content-center p-3">
         <h3 class="is-size-5 font-weight-light">
           You have bought
-          <b-icon icon="counter" size="is-medium" type="is-success" />
+          <b-icon
+            icon="counter"
+            size="is-medium"
+            type="is-success"
+          />
           <div class="details mt-3">
             <strong class="is-size-3">21</strong> items this month
           </div>
@@ -30,10 +40,16 @@
         class="col-lg p-3 rounded-lg border shadow-sm m-3"
         @click="visitPage(option.link)"
       >
-        <h5 class="is-size-5 text-center font-weight-bold">{{option.title | capitalize}}</h5>
+        <h5 class="is-size-5 text-center font-weight-bold">
+          {{ option.title | capitalize }}
+        </h5>
         <div class="details mt-3 d-flex flex-row">
-          <b-icon :icon="option.icon" size="is-large" :type="option.color"></b-icon>
-          <small class="align-self-center pl-5">{{option.description}}</small>
+          <b-icon
+            :icon="option.icon"
+            size="is-large"
+            :type="option.color"
+          />
+          <small class="align-self-center pl-5">{{ option.description }}</small>
         </div>
       </div>
     </div>
