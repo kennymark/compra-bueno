@@ -11,19 +11,35 @@
         </div>
         <label for="email">Email address</label>
         <b-input
+<<<<<<< Updated upstream
           id="email"
           v-model="form.email"
           type="email"
           size="is-medium"
+=======
+          type="email"
+          size="is-medium"
+          id="email"
+          v-model="form.email"
+          class="shadow-sm rounded"
+>>>>>>> Stashed changes
         />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
         <b-input
+<<<<<<< Updated upstream
           id="password"
           v-model="form.password"
           type="password"
           size="is-medium"
+=======
+          type="password"
+          size="is-medium"
+          id="password"
+          v-model="form.password"
+          class="shadow-sm rounded"
+>>>>>>> Stashed changes
         />
       </div>
 
@@ -39,16 +55,15 @@
 </template>
 
 <script>
-import firebase, { firestore } from 'firebase'
+import { auth, firestore } from '../../firebase.config'
+
 export default {
   name: 'Signup',
   components: {},
   data() {
     return {
       form: { email: '', password: '' },
-      error: '',
-      auth: firebase.auth(),
-      db: firebase.firestore()
+      error: ''
     }
   },
   mounted() {},
@@ -61,18 +76,18 @@ export default {
         handleCodeInApp: true
       }
       console.log(this.form)
-      this.auth
+      auth
         .createUserWithEmailAndPassword(this.form.email, this.form.password)
         .then(data => {
           saveUser(data)
-          this.auth.sendSignInLinkToEmail(this.form.email, actionCodeSettings)
+          auth.sendSignInLinkToEmail(this.form.email, actionCodeSettings)
           this.$router.push('/')
         })
         .catch(err => (this.error = err.message))
     }
   },
   saveUser(data) {
-    const user = this.db.collection('users')
+    const user = firestore().collection('users')
     user
       .add({
         email: data.user.email,

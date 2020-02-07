@@ -1,26 +1,12 @@
 
 export const columns = [
-  {
-    label: 'Name',
-    field: 'name',
-  },
-  {
-    label: 'Age',
-    field: 'age',
-    type: 'number',
-  },
+  { label: 'Name', field: 'name', },
+  { label: 'Age', field: 'age', type: 'number', },
   {
     label: 'Created On',
     field: 'createdAt',
-    type: 'date',
-    dateInputFormat: 'yyyy-MM-dd',
-    dateOutputFormat: 'Do MMM yy',
   },
-  // {
-  //   label: 'Percent',
-  //   field: 'score',
-  //   type: 'percentage',
-  // },
+
 ]
 export const rows = [
   { id: 1, name: "John", age: 20, createdAt: '2012-10-07', score: 0.03343 },

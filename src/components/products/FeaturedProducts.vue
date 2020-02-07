@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import { firestore } from '../../../firebase.config'
 import Product from './ProductCard'
 export default {
   components: { Product },
@@ -34,16 +34,14 @@ export default {
       products: []
     }
   },
-  mounted() {
-    const db = firebase.firestore().collection('featured_products')
-    const snapshot = db.get().then(data => data.docs)
+  async mounted() {
+    const db = firestore.collection('featured_products')
+    const snapshot = await db.get()
 
-    snapshot.then(data => {
-      data.map(product => {
-        this.products.push({ id: product.id, ...product.data() })
-      })
-      this.isLoading = false
+    this.products = snapshot.docs.map(snap => {
+      return { id: snap.id, ...snap.data() }
     })
+    this.isLoading = false
   },
 
   methods: {

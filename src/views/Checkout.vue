@@ -1,139 +1,103 @@
 <template>
-  <div class="container">
-    <h3 class="my-3 is-size-4">
-      Your Cart
-    </h3>
+  <Layout>
+    <h3 class="my-3 is-size-4">Your Cart</h3>
     <div class="row">
-      <div
-        v-if="!buyNowProduct"
-        class="col-md"
-      >
-        <div
-          v-for="(item, key) in cart"
-          :key="key"
-        >
-          <CartProduct
-            :length="cart"
-            :product="item"
-            class="border-bottom"
-          />
+      <div class="col-lg-5" v-if="!buyNowProduct">
+        <div v-for="(item, key) in cart" :key="key">
+          <CartProduct :length="cart" :product="item" class="border-bottom" />
         </div>
       </div>
 
-      <div
-        v-if="buyNowProduct"
-        class="col-md"
-      >
-        <CartProduct
-          :length="cart"
-          :product="buyNowProduct"
-        />
+      <div v-if="buyNowProduct" class="col-md">
+        <CartProduct :length="cart" :product="buyNowProduct" />
       </div>
 
-      <div
-        class="col-md border rounded p-3 m-3"
-        style="max-height:710px"
-      >
-        <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
-          <h4 class="font-weight-bold">
-            Pay
-          </h4>
-          <h5 class="font-weight-bold is-size-6">
-            Total: {{ cartTotal| currency }}
-          </h5>
+      <div class="col-md border rounded px-3 pt-3 offset-lg-1">
+        <h5 class="is-size-5">Shipping Details</h5>
+        <div class="my-2">
+          <label for="shipping_name" class="text-muted is-size-7">Shipping Name</label>
+          <b-input id="shipping_name" v-model="form.shipping_name" />
         </div>
-
-        <div>
-          <label
-            for="promo-code"
-            class="text-muted is-size-7"
-          >Promo Code</label>
-          <b-input
-            id="promo-code"
-            v-model="form.promo_code"
-          />
+        <div class="my-2">
+          <label for="address" class="text-muted is-size-7">Address</label>
+          <b-input id="address" v-model="form.address" />
         </div>
 
         <div class="my-2">
-          <label
-            for="promo-code"
-            class="text-muted is-size-7"
-          >Card Name</label>
-          <b-input
-            id="card-name"
-            v-model="form.card_name"
-          />
+          <label for="address-line-2" class="text-muted is-size-7">Address Line 2</label>
+          <b-input id="address-line-2" v-model="form.address_line_2" />
         </div>
 
-        <div class="my-2">
-          <label
-            for="address"
-            class="text-muted is-size-7"
-          >Address</label>
-          <b-input
-            id="address"
-            v-model="form.address"
-          />
+        <div class="row my-2">
+          <div class="col-lg col-xs-12">
+            <label for="post-code" class="text-muted is-size-7">Postcode</label>
+            <b-input
+              id="post-code"
+              size="is-medium"
+              v-model="form.post_code"
+              placeholder="CH1 4BR"
+            />
+          </div>
+          <div class="col-lg col-xs-12">
+            <label for="city" class="text-muted is-size-7">City</label>
+            <b-input id="city" size="is-medium" v-model="form.city" placeholder="Chester" />
+          </div>
         </div>
+        <div class="row my-2">
+          <div class="col-lg col-xs-12">
+            <label for="county" class="text-muted is-size-7">County</label>
+            <b-input id="county" v-model="form.county" placeholder="Cheshire" />
+          </div>
+          <div class="col-lg col-xs-12">
+            <label for="country" class="text-muted is-size-7">Country</label>
+            <!-- <b-input id="country" placeholder="United Kingdom" v-model="form.country" /> -->
 
-        <div class="my-2">
-          <label
-            for="address-line-2"
-            class="text-muted is-size-7"
-          >Address Line 2</label>
-          <b-input
-            id="address-line-2"
-            v-model="form.address_line_2"
-          />
+            <b-autocomplete
+              v-model="form.country"
+              autocomplete="off"
+              placeholder="Country"
+              :open-on-focus="true"
+              :data="filteredDataObj"
+              field="name"
+              native-type="search"
+              @select="option => selected = option"
+            />
+          </div>
         </div>
-
-        <div class="my-2">
-          <label
-            for="post-code"
-            class="text-muted is-size-7"
-          >Postcode</label>
-          <b-input
-            id="post-code"
-            v-model="form.post_code"
-            size="is-medium"
-          />
-        </div>
-
-        <div class="my-2">
-          <label
-            for="address"
-            class="text-muted is-size-7"
-          >Country</label>
-          <b-input
-            id="country"
-            v-model="form.country"
-            placeholder="United Kingdom"
-          />
+        <h5 class="is-size-5 mt-4">Card Details</h5>
+        <div class="row">
+          <div class="col-lg-3 col-xs-12">
+            <label for="promo-code" class="text-muted is-size-7">Promo Code</label>
+            <b-input id="promo-code" v-model="form.promo_code" />
+          </div>
+          <div class="col-lg col-xs-12">
+            <label for="promo-code" class="text-muted is-size-7">Card Name</label>
+            <b-input id="card-name" v-model="form.card_name" />
+          </div>
         </div>
         <card
-          class="complete mt-3 border p-3 rounded shadow-sm"
+          class="complete mt-3 border p-3 rounded"
           stripe="pk_test_eknsTrdNFJZOreWp64bLQ7dE00Z1YhaFbr"
           :options="stripeOptions"
           @change="complete = $event.complete"
         />
-
-        <b-button
-          type="is-primary"
-          class="my-3"
-          :disabled="!complete"
-          @click="pay"
-        >
-          Pay with card
-        </b-button>
+        <b-loading :active.sync="isLoading" :can-cancel="true" />
+        <div class="pay-buttons d-flex flex-row align-items-center">
+          <b-button :disabled="!complete" @click="pay" type="is-primary" class="my-3">Pay with card</b-button>
+          <b-button type="is-info" class="my-3 ml-2" disabled>Pay with PayPal</b-button>
+          <h5 class="font-weight-bold is-size-5 ml-auto">Total: {{ cartTotal| currency('£')}}</h5>
+        </div>
       </div>
     </div>
-  </div>
+  </Layout>
 </template>
 
 <script>
 import { Card, createToken } from 'vue-stripe-elements-plus'
 import CartProduct from '../components/products/CartProduct'
-import fb from 'firebase'
+import { auth } from '../../firebase.config'
+import countries from '../assets/countries'
+
 export default {
   name: 'Checkout',
   components: { CartProduct, Card },
@@ -141,26 +105,36 @@ export default {
   data() {
     return {
       cart: this.$store.state.cart,
+      isLoading: false,
       buyNowProduct: this.$store.state.buyNowProduct,
       complete: false,
       stripeOptions: {},
+      countries,
       form: {
+        card_name: null,
         promo_code: null,
-        country: null,
+        country: 'United Kingdom',
+        shipping_name: null,
         address: null,
         address_line_2: null,
-        city: 'chester',
-        county: 'cheshire',
+        city: '',
         post_code: null,
-        card_name: null
-      }
+        county: ''
+      },
+      timeout: null
     }
   },
   computed: {
     cartTotal() {
       return this.$store.getters.totalPrice
+    },
+    filteredDataObj() {
+      return this.countries.filter(option =>
+        option.name.toLowerCase().includes(this.form.country.toLowerCase())
+      )
     }
   },
+
   methods: {
     parseCart() {
       const newCart = []
@@ -181,29 +155,43 @@ export default {
     pay() {
       const url =
         'https://us-central1-e-commerce-1ac62.cloudfunctions.net/checkout'
-      const user = fb.auth().currentUser
+      const url2 = 'http://localhost:5000/e-commerce-1ac62/us-central1/checkout'
+      const user = auth.currentUser
+      this.isLoading = true
+      // this.timeout = setTimeout(() => {
+      //    this.isLoading = false
+      // }, 10*1000);
 
       createToken().then(data => {
         const productInfo = {
           token: data.token,
           data: this.form,
           cart: this.parseCart(),
-          total: this.cartTotal,
-          email: user.email,
+          email: user.email || 'anynomous@random.com',
           user_id: user.uid
         }
-        fetch(url, { method: 'post', body: JSON.stringify(productInfo) })
+        fetch(url2, {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(productInfo)
+        })
           .then(res => res.json())
           .then(data => {
-            if (data) {
+            if (data.captured) {
+              this.isLoading = false
               this.$buefy.notification.open({
-                message: 'Payment successfull, please check your email',
-                type: 'is-success'
+                message: 'Payment successful, please check your email',
+                type: 'is-success',
+                duration: 5000
               })
-            } else if (data.error) {
+            } else {
+              this.isLoading = false
+              console.log(data)
               this.$buefy.notification.open({
-                message: 'Payment failed, please try again later',
-                type: 'is-danger'
+                message:
+                  data.raw.message || 'Payment failed, please try again later',
+                type: 'is-warning',
+                duration: 10000
               })
             }
           })
@@ -217,8 +205,12 @@ export default {
 .stripe-card {
   width: 300px;
   border: 1px solid grey;
+  background: white !important;
 }
 .stripe-card.complete {
   border-color: green;
+}
+
+input {
 }
 </style>

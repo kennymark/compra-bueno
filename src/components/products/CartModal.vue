@@ -1,39 +1,25 @@
 <template>
-  <b-modal
-    id="product-modal"
-    title="Product Cart"
-    :active.sync="$store.state.isCartOpen"
-    :width="840"
-    :height="400"
-    scroll="keep"
+  <div
+    class="has-background-white position-fixed fixed-top h-100 cart-sidebar p-3 border-right shadow-lg ml-auto"
+    v-if="$store.state.isCartOpen"
   >
-    <div
-      v-for="(product, key) in cart"
-      :key="key"
-      class="border-bottom bg-white px-5 py-2"
-    >
-      <cart-product
-        :length="cart.length"
-        :product="product"
-      />
+    <div class="d-flex justify-content-between align-items-center px-3">
+      <h1 class="is-size-4">Your Cart</h1>
+      <div class="buttons">
+        <b-button
+          type="is-warning"
+          class="float-right font-weight-bold shadow-sm"
+          @click="checkOut"
+        >Checkout</b-button>
+        <b-button type="is-dark" class="shadow-sm border" @click="closeCart">Close X</b-button>
+      </div>
     </div>
-    <h5
-      v-if="!cart.length"
-      class="text-center m-3 border-0"
-    >
-      Cart is Empty
-    </h5>
 
-    <div class="w-100 p-2 border-top">
-      <b-button
-        type="is-primary"
-        class="float-right font-weight-bold"
-        @click="checkOut"
-      >
-        Checkout
-      </b-button>
+    <div v-for="(product, key) in cart" :key="key" class="border-bottom bg-white px-4 py-2">
+      <cart-product :length="cart.length" :product="product"></cart-product>
     </div>
-  </b-modal>
+    <h5 v-if="!cart.length" class="text-center m-3 border-0">Cart is Empty</h5>
+  </div>
 </template>
 
 <script>
@@ -41,7 +27,7 @@ import CartProduct from './CartProduct'
 export default {
   name: 'ProductModal',
   components: { CartProduct },
-  props: { isCartOpen: Boolean },
+  props: { isCartOpen: { type: Boolean, default: () => false } },
   data() {
     return {
       value: '',
@@ -54,10 +40,20 @@ export default {
       this.$store.commit('setBuyNow', null)
 
       this.$router.push('/checkout')
+    },
+    closeCart() {
+      this.$store.commit('openCart', false)
     }
   }
 }
 </script>
 
 <style scoped>
+.cart-sidebar {
+  z-index: 100;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  max-width: 570px;
+}
 </style>

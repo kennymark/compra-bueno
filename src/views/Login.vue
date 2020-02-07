@@ -14,12 +14,18 @@
           type="email"
           size="is-medium"
           aria-describedby="emailHelp"
+<<<<<<< Updated upstream
+=======
+          class="shadow-sm rounded"
+          v-model="form.email"
+>>>>>>> Stashed changes
         />
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
         <b-input
           id="exampleInputPassword1"
+          class="shadow-sm rounded"
           v-model="form.password"
           type="password"
           size="is-medium"
@@ -38,7 +44,8 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import { auth } from '../../firebase.config'
+
 export default {
   name: 'Login',
   components: {},
@@ -57,7 +64,7 @@ export default {
   methods: {
     login(e) {
       e.preventDefault()
-      this.auth
+      auth
         .signInWithEmailAndPassword(this.form.email, this.form.password)
         .then(data => {
           this.$store.commit('changeLoggedIn', true)

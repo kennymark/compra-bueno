@@ -4,6 +4,7 @@
     :arrow-both="arrowBoth"
     :has-drag="true"
     :interval="interval"
+<<<<<<< Updated upstream
   >
     <b-carousel-item
       v-for="(product, i) in products"
@@ -22,13 +23,21 @@
         <h1 class="m-3 is-size-5">
           {{ product.name }}
         </h1>
+=======
+    class="bg-white"
+  >
+    <b-carousel-item v-for="(product, i) in products" :key="i" style="height:530px; cursor:pointer">
+      <div @click="viewProduct(product)" class="mx-auto">
+        <img :src="product.imageurls" :alt="product.name" class="ml-auto text-center" />
+        <!-- <h1 class="m-3 is-size-5 ">{{product.name}}</h1> -->
+>>>>>>> Stashed changes
       </div>
     </b-carousel-item>
   </b-carousel>
 </template>
 
 <script>
-import firebase from 'firebase'
+import { firestore } from '../../../firebase.config'
 export default {
   components: {},
   data() {
@@ -42,7 +51,7 @@ export default {
   },
 
   mounted() {
-    const db = firebase.firestore().collection('starred_products')
+    const db = firestore.collection('starred_products')
     const snapshot = db.get().then(data => data.docs)
 
     snapshot.then(data => {

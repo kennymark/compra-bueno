@@ -8,26 +8,27 @@ import Signup from '../views/Signup'
 import Checkout from '../views/Checkout'
 import AdminOverview from '../views/admin/Overview'
 import Orders from '../views/admin/Orders'
+import OrderDetails from '../views/admin/OrderDetails'
 import AdminProducts from '../views/admin/Products'
 import Customers from '../views/admin/Customers'
-import SingleProductPage from '../views/SingleProduct'
+import CustomerDetails from '../views/admin/CustomerDetails'
+import ProductDetail from '../views/ProductDetail'
 import EditProduct from '../views/admin/EditProduct'
+import AddProduct from '../views/admin/AddProduct'
 import Account from '../views/account/Account'
 import AccountOrders from '../views/account/Orders'
 import AccountSecurity from '../views/account/Security'
 import AccountAddressPayment from '../views/account/AddressPayments'
-
 import PageNotFound from '../views/PageNotFound'
-
+import { auth } from '../../firebase.config'
 
 const routes = [
   { path: '/', name: 'home', component: Home },
-  { path: '/product', name: 'product', component: SingleProductPage },
+  { path: '/product', name: 'product', component: ProductDetail },
   { path: '/products', name: 'products', component: AllProducts },
   { path: '/login', name: 'login', component: Login },
   { path: '/signup', name: 'signup', component: Signup },
   { path: '/checkout', name: 'checkout', component: Checkout },
-  { path: '/edit-product', name: 'edit-product', component: EditProduct },
   {
     path: '/account', name: 'account', component: Account,
     children: [
@@ -40,10 +41,26 @@ const routes = [
     path: '/admin', component: Admin,
     children: [
       { name: 'overview', path: '', component: AdminOverview },
-      { path: 'overview', redirect: '/admin' },
-      { name: 'customers', path: 'customers', component: Customers },
-      { name: 'admin-products', path: 'products', component: AdminProducts },
-      { name: 'orders', path: 'orders', component: Orders },
+      {
+        name: 'customers', path: 'customers', component: Customers,
+        children: [
+          { name: 'customer-details', path: ':id/details', component: CustomerDetails }
+        ]
+      },
+      {
+        name: 'admin-products', path: 'products', component: AdminProducts, pathMatch: 'full',
+        children: [
+          { path: '/edit-product/:id', name: 'edit-product', component: EditProduct, },
+          { path: '/add-product/:id?', name: 'add-product', component: AddProduct },
+
+        ]
+      },
+      {
+        name: 'orders', path: 'orders', component: Orders,
+        children: [
+          { name: 'order-details', path: ':id/details', component: OrderDetails }
+        ]
+      },
     ]
   },
   {
@@ -63,10 +80,10 @@ Vue.use(VueRouter)
 // router.beforeEach((to, from, next) => {
 
 //   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
-//   const currentUser = fb.auth().currentUser
+//   const currentUser = auth.currentUser
 
 //   if (requiresAuth && !currentUser) {
-//       next('/')
+//       next('/login')
 //   } else if (requiresAuth && currentUser) {
 //       next()
 //   } else {

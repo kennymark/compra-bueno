@@ -1,42 +1,50 @@
 <template>
   <Layout>
+<<<<<<< Updated upstream
     <h3 class="is-size-3 mb-3">
       Products
     </h3>
+=======
+    <h3 class="is-size-3 mb-3">Products</h3>
+>>>>>>> Stashed changes
     <b-input
       v-model="query"
       placeholder="Search..."
       size="is-medium"
+<<<<<<< Updated upstream
       class="my-4"
+=======
+      class="my-4 shadow-sm rounded"
+>>>>>>> Stashed changes
     />
 
     <vue-good-table
       class="border-0 bg-white rounded-lg"
       :columns="columns"
-      :rows="rows"
+      :rows="products"
       :pagination-options="{
         enabled: true,
         mode: 'records',
         perPage: 10,
         perPageDropdown: [5, 10, 20],
         dropdownAllowAll: true,
-        nextLabel: 'next',
-        prevLabel: 'prev',
-        rowsPerPageLabel: 'Rows per page',
-        ofLabel: 'of',
-        pageLabel: 'page', // for 'pages' mode
-        allLabel: 'All',
       }"
       :select-options="{ enabled: true,}"
       :search-options="{externalQuery: query,enabled: true}"
       @on-row-click="onRowClick"
-    />
+    >
+      <template slot="table-row" slot-scope="props">
+        <div v-if="props.column.field === 'name'">
+          <span>{{props.row.name | truncate('20')}}</span>
+        </div>
+      </template>
+    </vue-good-table>
   </Layout>
 </template>
 
 <script>
 import { VueGoodTable } from 'vue-good-table'
-
+import { firestore } from '../../../firebase.config'
 export default {
   components: { VueGoodTable },
   data() {
@@ -46,23 +54,32 @@ export default {
         { label: 'Name', field: 'name' },
         { label: 'Brand', field: 'brand' },
         { label: 'Price', field: 'price.max' },
-        { label: 'On Sale', field: 'price.sale' },
+        { label: 'On Sale', field: 'price.on_sale' },
         { label: 'Quantity', field: 'quantity' },
         { label: 'Added', field: 'dateadded' },
         { label: 'Updated', field: 'dateupdated' }
       ],
-      rows: []
+      products: []
     }
   },
   mounted() {
-    const data = JSON.parse(localStorage.getItem('products'))
-    this.rows = data
+    this.getAllProducts()
   },
 
   methods: {
+    async getAllProducts() {
+      const db = firestore.collection('products')
+      const snapshot = await db.orderBy('name').get()
+
+      this.products = snapshot.docs.map(snap => {
+        return { id: snap.id, ...snap.data() }
+      })
+    },
     onRowClick(params) {
       this.$store.commit('setAdminCurrentProduct', params.row)
-      this.$router.push('/edit-product')
+      this.$router.push({
+        path: `products/edit-product/${params.row.id}`
+      })
       console.log(params.row)
     }
   }

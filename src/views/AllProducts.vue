@@ -1,36 +1,19 @@
 <template>
   <Layout>
-    <b-input
-      placeholder="Search..."
-      size="is-medium"
-      class="shadow-none"
-      @keypress="search"
-    />
+    <b-input placeholder="Search..." size="is-medium" @keypress="search" class="shadow-sm rounded" />
     <div class="row">
-      <div
-        v-for="(item, key) in products"
-        :key="key"
-        class="col-lg-3 col-md-6 my-3"
-      >
+      <div v-for="(item, key) in products" :key="key" class="col-lg-3 col-md-6 my-3">
         <ProductCard :product="item" />
       </div>
     </div>
-    <b-pagination
-      v-if="products.length"
-      v-model="currentPage"
-      :total="rows"
-      class="my-4"
-    />
-    <b-loading
-      :active.sync="isLoading"
-      :can-cancel="true"
-    />
+    <b-pagination v-if="products.length" :current.sync="currentPage" :total="rows" class="my-4" />
+    <b-loading :active.sync="isLoading" :can-cancel="true" />
   </Layout>
 </template>
 
 <script>
 import ProductCard from '../components/products/ProductCard'
-import firebase from 'firebase'
+import { firestore } from '../../firebase.config'
 export default {
   name: 'Products',
   components: {
@@ -44,32 +27,42 @@ export default {
       rows: 0,
       currentPage: 1,
       limit: 12,
-      isLoading: true
+      isLoading: true,
+      queryFrom: 15
+    }
+  },
+
+  watch: {
+    currentPage(val) {
+      const query = val * this.limit
+      console.log(query)
+      this.getAllProducts(query)
+      console.log({ val })
     }
   },
 
   mounted() {
-    const db = firebase.firestore().collection('products')
-    db.get().then(data => (this.rows = +data.size))
-    const snapshot = db
-      .limit(this.limit)
-      .orderBy('name')
-      .get()
-      .then(data => data.docs)
-    // if (!this.products) {
-    //   this.products = JSON.parse(localStorage.getItem('products'))
-    // }
-
-    snapshot.then(data => {
-      data.map(product => {
-        // this.filterProducts.push(product.data())
-        this.products.push({ id: product.id, ...product.data() })
-      })
-      this.isLoading = false
-    })
+    this.getAllProducts()
   },
 
   methods: {
+    async getAllProducts(queryFrom = 0) {
+      const db = firestore.collection('products')
+      db.get().then(data => (this.rows = +data.size))
+      const snapshot = await db
+        .limit(this.limit)
+        .orderBy('name')
+        .startAt(queryFrom)
+        .get()
+
+      this.products = snapshot.docs.map(snap => {
+        return { id: snap.id, ...snap.data() }
+      })
+      // if (!this.products) {
+      //   this.products = JSON.parse(localStorage.getItem('products'))
+      // }
+      this.isLoading = false
+    },
     search(e) {
       console.log(e)
       // this.products = this.filterProducts.filter(data =>
