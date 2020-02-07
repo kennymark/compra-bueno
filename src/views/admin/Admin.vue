@@ -10,7 +10,7 @@
             :label="item.title"
             tag="router-link"
             :to="'/admin/'+item.route"
-            class="w-100"
+            class="py-1"
           />
         </b-menu-list>
       </b-menu>

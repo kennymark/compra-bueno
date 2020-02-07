@@ -65,7 +65,7 @@ export default {
     }
   },
   saveUser(data) {
-    const user = firestore().collection('users')
+    const user = firestore.collection('users')
     user
       .add({
         email: data.user.email,

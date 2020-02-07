@@ -53,7 +53,7 @@
           <div
             v-for="(product, key) in products"
             :key="key"
-            class="row border rounded-lg my-2 ro w-100 p-3 shadow-sm bg-white"
+            class="d-flex flex-row border rounded-lg my-2 ro w-100 p-3 shadow-sm bg-white"
           >
             <div class="col-3 d-flex justify-content-center align-content-center">
               <img

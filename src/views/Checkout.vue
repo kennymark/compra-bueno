@@ -12,20 +12,23 @@
         <CartProduct :length="cart" :product="buyNowProduct" />
       </div>
 
-      <div class="col-md rounded px-3 pt-3 offset-lg-1 bg-white h-auto shadow-sm">
+      <div
+        class="col-md rounded px-3 pt-3 offset-lg-1 bg-white h-auto shadow-sm"
+        style="max-height:780px"
+      >
         <h5 class="is-size-5">Shipping Details</h5>
         <div class="my-2">
           <label for="shipping_name" class="text-muted is-size-7">Shipping Name</label>
-          <b-input id="shipping_name" v-model="form.shipping_name" />
+          <b-input id="shipping_name" v-model="form.shipping_name" class="border rounded" />
         </div>
         <div class="my-2">
           <label for="address" class="text-muted is-size-7">Address</label>
-          <b-input id="address" v-model="form.address" />
+          <b-input id="address" v-model="form.address" class="border rounded" />
         </div>
 
         <div class="my-2">
           <label for="address-line-2" class="text-muted is-size-7">Address Line 2</label>
-          <b-input id="address-line-2" v-model="form.address_line_2" />
+          <b-input id="address-line-2" v-model="form.address_line_2" class="border rounded" />
         </div>
 
         <div class="row my-2">
@@ -36,17 +39,29 @@
               v-model="form.post_code"
               size="is-medium"
               placeholder="CH1 4BR"
+              class="border rounded"
             />
           </div>
           <div class="col-lg col-xs-12">
             <label for="city" class="text-muted is-size-7">City</label>
-            <b-input id="city" v-model="form.city" size="is-medium" placeholder="Chester" />
+            <b-input
+              id="city"
+              v-model="form.city"
+              size="is-medium"
+              placeholder="Chester"
+              class="border rounded"
+            />
           </div>
         </div>
         <div class="row my-2">
           <div class="col-lg col-xs-12">
             <label for="county" class="text-muted is-size-7">County</label>
-            <b-input id="county" v-model="form.county" placeholder="Cheshire" />
+            <b-input
+              id="county"
+              v-model="form.county"
+              placeholder="Cheshire"
+              class="border rounded"
+            />
           </div>
           <div class="col-lg col-xs-12">
             <label for="country" class="text-muted is-size-7">Country</label>
@@ -58,6 +73,7 @@
               :data="filteredDataObj"
               field="name"
               native-type="search"
+              class="border rounded"
               @select="option => selected = option"
             />
           </div>
@@ -66,11 +82,11 @@
         <div class="row">
           <div class="col-lg-3 col-xs-12">
             <label for="promo-code" class="text-muted is-size-7">Promo Code</label>
-            <b-input id="promo-code" v-model="form.promo_code" />
+            <b-input id="promo-code" v-model="form.promo_code" class="border rounded" />
           </div>
           <div class="col-lg col-xs-12">
             <label for="promo-code" class="text-muted is-size-7">Card Name</label>
-            <b-input id="card-name" v-model="form.card_name" />
+            <b-input id="card-name" v-model="form.card_name" class="border rounded" />
           </div>
         </div>
         <card

@@ -1,6 +1,9 @@
 <template>
   <Layout>
-    <h3 class="is-size-3 mb-3">Products</h3>
+    <div class="d-flex justify-content-between">
+      <h3 class="is-size-3 mb-3">Products</h3>
+      <b-button type="is-dark" class="shadow" size="is-medium" @click="addProduct">Create Product</b-button>
+    </div>
     <b-input
       v-model="query"
       placeholder="Search..."
@@ -27,6 +30,7 @@
         </div>
       </template>
     </vue-good-table>
+    <router-view />
   </Layout>
 </template>
 
@@ -69,6 +73,9 @@ export default {
         path: `products/edit-product/${params.row.id}`
       })
       console.log(params.row)
+    },
+    addProduct() {
+      this.$router.push('products/add-product')
     }
   }
 }

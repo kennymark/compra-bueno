@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter, { RouterOptions, RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
 import AllProducts from '../views/AllProducts.vue'
 import Admin from '../views/admin/Admin.vue'
@@ -22,7 +22,7 @@ import AccountAddressPayment from '../views/account/AddressPayments.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import { auth } from '../../firebase.config'
 
-const routes = [
+const routes:RouteConfig[] = [
   { path: '/', name: 'home', component: Home },
   { path: '/product', name: 'product', component: ProductDetail },
   { path: '/products', name: 'products', component: AllProducts },
@@ -30,15 +30,15 @@ const routes = [
   { path: '/signup', name: 'signup', component: Signup },
   { path: '/checkout', name: 'checkout', component: Checkout },
   {
-    path: '/account', name: 'account', component: Account,
+    path: '/account', name: 'account', component: Account, meta: {requiresAuth: true},
     children: [
-      { name: 'my-orders', path: 'orders', component: AccountOrders },
-      { name: 'my-security', path: 'security', component: AccountSecurity },
-      { name: 'my-address', path: 'address', component: AccountAddressPayment },
+      { name: 'my-orders', path: 'orders', component: AccountOrders,meta: {requiresAuth: true}},
+      { name: 'my-security', path: 'security', component: AccountSecurity,meta: {requiresAuth: true} },
+      { name: 'my-address', path: 'address', component: AccountAddressPayment,meta: {requiresAuth: true} },
     ]
   },
   {
-    path: '/admin', component: Admin,
+    path: '/admin', component: Admin,meta: {requiresAuth: true},
     children: [
       { name: 'overview', path: '', component: AdminOverview },
       {
@@ -48,17 +48,17 @@ const routes = [
         ]
       },
       {
-        name: 'admin-products', path: 'products', component: AdminProducts, pathMatch: 'full',
+        name: 'admin-products', path: 'products', component:AdminProducts,
         children: [
+          { path: '/add-product', name: 'add-product', component: AddProduct },
           { path: '/edit-product/:id', name: 'edit-product', component: EditProduct, },
-          { path: '/add-product/:id?', name: 'add-product', component: AddProduct },
 
         ]
       },
       {
         name: 'orders', path: 'orders', component: Orders,
         children: [
-          { name: 'order-details', path: ':id/details', component: OrderDetails }
+          { name: 'order-details', path: '/details/:id', component: OrderDetails }
         ]
       },
     ]
@@ -70,25 +70,19 @@ const routes = [
   { path: '*', component: PageNotFound }
 ]
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+const router = new VueRouter({mode: 'history',base: process.env.BASE_URL, routes})
 Vue.use(VueRouter)
 
-// router.beforeEach((to, from, next) => {
+router.beforeEach((curr, prev, next) => {
+  const requiresAuth = curr.meta.requiresAuth
+  const currentUser = auth.currentUser
+  if (requiresAuth && !currentUser) {
+      next('/login')
+  } else if (requiresAuth && currentUser) {
+      next()
+  } else next()
+  
+})
 
-//   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
-//   const currentUser = auth.currentUser
-
-//   if (requiresAuth && !currentUser) {
-//       next('/login')
-//   } else if (requiresAuth && currentUser) {
-//       next()
-//   } else {
-//       next()
-//   }
-// })
 
 export default router

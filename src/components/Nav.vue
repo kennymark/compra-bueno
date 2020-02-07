@@ -1,5 +1,5 @@
 <template>
-  <b-navbar class="bg-white fixed-top">
+  <b-navbar class="bg-white header">
     <template slot="brand">
       <b-navbar-item tag="router-link" to="/" class="has-text-dark has-text-weight-bold">CompraBueno</b-navbar-item>
     </template>
@@ -61,3 +61,8 @@ export default {
 }
 </script>
 
+<style >
+.header {
+  border: 1px solid rgb(243, 243, 243);
+}
+</style>

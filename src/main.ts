@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 import 'bootstrap/dist/css/bootstrap.css'
 import CartProduct from './components/products/CartProduct.vue'
-import CartModal from './components/products/CartModal.vue'
+import CartSideBar from './components/products/CartSideBar.vue'
 import Layout from './components/Layout.vue'
 import Vue2Filters from 'vue2-filters'
 import Buefy from 'buefy'
@@ -19,7 +19,7 @@ Vue.use(Buefy)
 Vue.use(VueTimeago, { locale: 'en' })
 
 Vue.component("CartProduct", CartProduct)
-Vue.component("CartModal", CartModal)
+Vue.component("CartSideBar", CartSideBar)
 Vue.component("Layout", Layout)
 
 Vue.config.productionTip = false

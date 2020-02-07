@@ -2,8 +2,8 @@
   <span>
     <Nav />
     <router-view @click="closeCart" />
-    <transition name="slide-fade" :duration="1000">
-      <CartModal :isCartOpen="$store.state.isCartOpen" />
+    <transition name="slide-fade">
+      <cart-side-bar :isCartOpen="$store.state.isCartOpen" />
     </transition>
   </span>
 </template>
@@ -76,14 +76,15 @@ a {
   border: none !important;
 }
 .slide-fade-enter-active {
-  transition: all 2s ease;
+  transition: all 0.4s ease;
+  width: 0px !important;
 }
 .slide-fade-leave-active {
-  transition: all 2s ease-out;
+  transition: all 0.4s ease-out;
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
-  transition: all 2s ease;
+  transition: all 0.4s ease;
 
   transform: translateX(10px);
   opacity: 0.3;
