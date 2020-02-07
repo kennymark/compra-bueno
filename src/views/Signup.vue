@@ -1,8 +1,6 @@
 <template>
   <div class="container w-50 my-5">
-    <h1 class="h3 mb-3 font-weight-normal">
-      Please sign up
-    </h1>
+    <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
 
     <form @submit="signup">
       <div class="form-group">
@@ -11,45 +9,25 @@
         </div>
         <label for="email">Email address</label>
         <b-input
-<<<<<<< Updated upstream
           id="email"
           v-model="form.email"
-          type="email"
+          native-type="email"
           size="is-medium"
-=======
-          type="email"
-          size="is-medium"
-          id="email"
-          v-model="form.email"
           class="shadow-sm rounded"
->>>>>>> Stashed changes
         />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
         <b-input
-<<<<<<< Updated upstream
           id="password"
           v-model="form.password"
           type="password"
           size="is-medium"
-=======
-          type="password"
-          size="is-medium"
-          id="password"
-          v-model="form.password"
           class="shadow-sm rounded"
->>>>>>> Stashed changes
         />
       </div>
 
-      <b-button
-        type="is-primary"
-        size="is-medium"
-        native-type="submit"
-      >
-        Submit
-      </b-button>
+      <b-button type="is-primary" size="is-medium" native-type="submit">Submit</b-button>
     </form>
   </div>
 </template>

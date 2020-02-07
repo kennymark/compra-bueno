@@ -1,6 +1,7 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex,{} from 'vuex'
 import VuexPersistence from 'vuex-persist'
+import { Product, Store } from '@/shared/model/product/product.model'
 
 Vue.use(Vuex)
 
@@ -8,7 +9,7 @@ const vuexLocal = new VuexPersistence({
   storage: window.localStorage
 })
 
-export default new Vuex.Store({
+export default new Vuex.Store<any>({
   state: {
     isLoggedIn: false,
     cart: [],
@@ -17,14 +18,14 @@ export default new Vuex.Store({
     currentProduct: null,
     adminCurrentProduct: null,
     buyNowProduct: null
-  },
+  } ,
   mutations: {
     changeLoggedIn(state, loginState) {
       state.isLoggedIn = loginState
     },
 
     addToCart(state, product) {
-      const cart = state.cart.find(item => item.id == product.id)
+      const cart = state.cart.find((item:Product) => item.id == product.id)
       const buyNowCart = state.buyNowProduct;
       if (buyNowCart) { buyNowCart.quantity++ }
       if (cart) { cart.quantity++ }
@@ -47,7 +48,7 @@ export default new Vuex.Store({
     },
 
     decrementQuantity(state, product) {
-      const cart = state.cart.find(item => item.id == product.id)
+      const cart = state.cart.find((item:Product) => item.id == product.id)
       const buyNowCart = state.buyNowProduct;
 
       if (buyNowCart != null) {
@@ -81,7 +82,7 @@ export default new Vuex.Store({
     },
     totalPrice(state) {
       let total = 0;
-      state.cart.map((item) => {
+      state.cart.map((item:Product) => {
         total += (item.price.max * item.quantity);
       });
       return total;

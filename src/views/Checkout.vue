@@ -1,55 +1,114 @@
 <template>
   <Layout>
-    <h3 class="my-3 is-size-4">Your Cart</h3>
+    <h3 class="my-3 is-size-4">
+      Your Cart
+    </h3>
     <div class="row">
-      <div class="col-lg-5" v-if="!buyNowProduct">
-        <div v-for="(item, key) in cart" :key="key">
-          <CartProduct :length="cart" :product="item" class="border-bottom" />
+      <div
+        v-if="!buyNowProduct"
+        class="col-lg-5"
+      >
+        <div
+          v-for="(item, key) in cart"
+          :key="key"
+        >
+          <CartProduct
+            :length="cart"
+            :product="item"
+            class="border-bottom"
+          />
         </div>
       </div>
 
-      <div v-if="buyNowProduct" class="col-md">
-        <CartProduct :length="cart" :product="buyNowProduct" />
+      <div
+        v-if="buyNowProduct"
+        class="col-md"
+      >
+        <CartProduct
+          :length="cart"
+          :product="buyNowProduct"
+        />
       </div>
 
       <div class="col-md border rounded px-3 pt-3 offset-lg-1">
-        <h5 class="is-size-5">Shipping Details</h5>
+        <h5 class="is-size-5">
+          Shipping Details
+        </h5>
         <div class="my-2">
-          <label for="shipping_name" class="text-muted is-size-7">Shipping Name</label>
-          <b-input id="shipping_name" v-model="form.shipping_name" />
+          <label
+            for="shipping_name"
+            class="text-muted is-size-7"
+          >Shipping Name</label>
+          <b-input
+            id="shipping_name"
+            v-model="form.shipping_name"
+          />
         </div>
         <div class="my-2">
-          <label for="address" class="text-muted is-size-7">Address</label>
-          <b-input id="address" v-model="form.address" />
+          <label
+            for="address"
+            class="text-muted is-size-7"
+          >Address</label>
+          <b-input
+            id="address"
+            v-model="form.address"
+          />
         </div>
 
         <div class="my-2">
-          <label for="address-line-2" class="text-muted is-size-7">Address Line 2</label>
-          <b-input id="address-line-2" v-model="form.address_line_2" />
+          <label
+            for="address-line-2"
+            class="text-muted is-size-7"
+          >Address Line 2</label>
+          <b-input
+            id="address-line-2"
+            v-model="form.address_line_2"
+          />
         </div>
 
         <div class="row my-2">
           <div class="col-lg col-xs-12">
-            <label for="post-code" class="text-muted is-size-7">Postcode</label>
+            <label
+              for="post-code"
+              class="text-muted is-size-7"
+            >Postcode</label>
             <b-input
               id="post-code"
-              size="is-medium"
               v-model="form.post_code"
+              size="is-medium"
               placeholder="CH1 4BR"
             />
           </div>
           <div class="col-lg col-xs-12">
-            <label for="city" class="text-muted is-size-7">City</label>
-            <b-input id="city" size="is-medium" v-model="form.city" placeholder="Chester" />
+            <label
+              for="city"
+              class="text-muted is-size-7"
+            >City</label>
+            <b-input
+              id="city"
+              v-model="form.city"
+              size="is-medium"
+              placeholder="Chester"
+            />
           </div>
         </div>
         <div class="row my-2">
           <div class="col-lg col-xs-12">
-            <label for="county" class="text-muted is-size-7">County</label>
-            <b-input id="county" v-model="form.county" placeholder="Cheshire" />
+            <label
+              for="county"
+              class="text-muted is-size-7"
+            >County</label>
+            <b-input
+              id="county"
+              v-model="form.county"
+              placeholder="Cheshire"
+            />
           </div>
           <div class="col-lg col-xs-12">
-            <label for="country" class="text-muted is-size-7">Country</label>
+            <label
+              for="country"
+              class="text-muted is-size-7"
+            >Country</label>
             <!-- <b-input id="country" placeholder="United Kingdom" v-model="form.country" /> -->
 
             <b-autocomplete
@@ -64,15 +123,29 @@
             />
           </div>
         </div>
-        <h5 class="is-size-5 mt-4">Card Details</h5>
+        <h5 class="is-size-5 mt-4">
+          Card Details
+        </h5>
         <div class="row">
           <div class="col-lg-3 col-xs-12">
-            <label for="promo-code" class="text-muted is-size-7">Promo Code</label>
-            <b-input id="promo-code" v-model="form.promo_code" />
+            <label
+              for="promo-code"
+              class="text-muted is-size-7"
+            >Promo Code</label>
+            <b-input
+              id="promo-code"
+              v-model="form.promo_code"
+            />
           </div>
           <div class="col-lg col-xs-12">
-            <label for="promo-code" class="text-muted is-size-7">Card Name</label>
-            <b-input id="card-name" v-model="form.card_name" />
+            <label
+              for="promo-code"
+              class="text-muted is-size-7"
+            >Card Name</label>
+            <b-input
+              id="card-name"
+              v-model="form.card_name"
+            />
           </div>
         </div>
         <card
@@ -81,11 +154,29 @@
           :options="stripeOptions"
           @change="complete = $event.complete"
         />
-        <b-loading :active.sync="isLoading" :can-cancel="true" />
+        <b-loading
+          :active.sync="isLoading"
+          :can-cancel="true"
+        />
         <div class="pay-buttons d-flex flex-row align-items-center">
-          <b-button :disabled="!complete" @click="pay" type="is-primary" class="my-3">Pay with card</b-button>
-          <b-button type="is-info" class="my-3 ml-2" disabled>Pay with PayPal</b-button>
-          <h5 class="font-weight-bold is-size-5 ml-auto">Total: {{ cartTotal| currency('£')}}</h5>
+          <b-button
+            :disabled="!complete"
+            type="is-primary"
+            class="my-3"
+            @click="pay"
+          >
+            Pay with card
+          </b-button>
+          <b-button
+            type="is-info"
+            class="my-3 ml-2"
+            disabled
+          >
+            Pay with PayPal
+          </b-button>
+          <h5 class="font-weight-bold is-size-5 ml-auto">
+            Total: {{ cartTotal| currency('£') }}
+          </h5>
         </div>
       </div>
     </div>

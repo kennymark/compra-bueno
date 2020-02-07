@@ -2,42 +2,14 @@
   <Layout>
     <div class="row">
       <div class="col-lg-8">
-<<<<<<< Updated upstream
-        <h3 class="is-size-3 mb-3">
-          Overview
-        </h3>
-        <div class="row">
-          <div class="col rounded border mr-3 p-3">
-            <h5 class="is-size-5">
-              Sales
-            </h5>
-            <h2 class="is-size-2">
-              £23309
-            </h2>
-          </div>
-
-          <div class="col rounded border p-3">
-            <h5 class="is-size-5">
-              Orders
-            </h5>
-            <h2 class="is-size-2">
-              32
-            </h2>
-          </div>
-        </div>
-
-        <div class="row my-4">
-          <h5 class="font-weight-bold text-secondary is-size-4 my-2">
-            Top Products
-          </h5>
-=======
         <h3 class="is-size-3 mb-3">Overview</h3>
+
         <div class="d-flex justify-content-between">
           <div class="col-lg p-3 mr-2 rounded shadow bg-white">
             <h5 class="is-size-5">Sales</h5>
             <small class="text-muted mt-3">Earnings this month</small>
 
-            <h2 class="is-size-3 mt-2">{{23309|currency('£')}}</h2>
+            <h2 class="is-size-3 mt-2">{{ 23309|currency('£') }}</h2>
           </div>
 
           <div class="col-lg p-3 mr-2 rounded shadow bg-white">
@@ -49,7 +21,7 @@
           <div class="col-lg p-3 rounded shadow bg-white">
             <h5 class="is-size-5">Net Profit</h5>
             <small class="text-muted mt-3">Profit this month</small>
-            <h2 class="is-size-3 mt-2">{{500 | currency('£')}}</h2>
+            <h2 class="is-size-3 mt-2">{{ 500 | currency('£') }}</h2>
           </div>
         </div>
 
@@ -71,23 +43,18 @@
             :labels="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']"
             :height="350"
             :colors="['#008F68', '#FAE042']"
-            :lineOptions="{regionFill: 1, heatline:1, hideDots: 1}"
-            :dataSets="[{name: 'Sales', values: benedictsWeight2017}]"
+            :line-options="{regionFill: 1, heatline:1, hideDots: 1}"
+            :data-sets="[{name: 'Sales', values: benedictsWeight2017}]"
           />
         </div>
 
         <div class="d-flex flex-column my-4">
           <h5 class="font-weight-bold text-secondary is-size-4 my-2">Top Products</h5>
->>>>>>> Stashed changes
           <div
             v-for="(product, key) in products"
             :key="key"
             class="row border rounded-lg my-2 ro w-100 p-3"
           >
-<<<<<<< Updated upstream
-            <p>{{ product.name | capitalize | truncate(60) }}</p>
-            <p>{{ product.price.max | currency }}</p>
-=======
             <div class="col-3 d-flex justify-content-center align-content-center">
               <img
                 :src="product.imageurls.split(',')[0] || product.imageurls.split(',')[1] || product.imageurls"
@@ -95,44 +62,26 @@
               />
             </div>
             <div class="col">
-              <p class="font-weight-bold">{{product.name | capitalize | truncate(60)}}</p>
-              <p>{{product.price.max | currency}}</p>
+              <p class="font-weight-bold">{{ product.name | capitalize | truncate(60) }}</p>
+              <p>{{ product.price.max | currency }}</p>
             </div>
->>>>>>> Stashed changes
           </div>
         </div>
       </div>
-
       <div class="col-lg mx-auto">
-        <h3 class="text-center font-weight-bold is-size-4 mb-3">
-          Activity
-        </h3>
+        <h3 class="text-center font-weight-bold is-size-4 mb-3">Activity</h3>
         <div style="max-height:80vh; overflow-y:scroll">
-<<<<<<< Updated upstream
-          <div
-            v-for="(activity, key) in activities"
-            :key="key"
-            class="col my-2 rounded-lg border p-3"
-          >
-            <p>Order #{{ key }} was placed</p>
-            <p class="text-small text-muted">
-              A day ago
-=======
           <div v-for="(activity, key) in orders" :key="key" class="col my-2 rounded-lg border p-3">
             <p>
               Order with total
-              <b>{{activity.total/100 | currency('£')}}</b> was placed
+              <b>{{ activity.total/100 | currency('£') }}</b> was placed
             </p>
-
-            <!-- <p class="text-small text-muted">A day ago</p> -->
-            <p class="text-small text-muted"></p>
             <p class="text-small text-muted">
               <timeago
                 :datetime="activity.created_at*1000"
                 :auto-update="60"
-                :converterOptions="{ includeSeconds: true }"
+                :converter-options="{ includeSeconds: true }"
               />
->>>>>>> Stashed changes
             </p>
           </div>
         </div>

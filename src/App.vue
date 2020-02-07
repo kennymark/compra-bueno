@@ -3,8 +3,6 @@
     <Nav />
 
     <router-view />
-
-    <Footer />
     <transition name="slide-fade" :duration="1000">
       <CartModal :isCartOpen="$store.state.isCartOpen" />
     </transition>
@@ -13,17 +11,20 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import Nav from './components/Nav.vue'
+import Footer from './components/Footer.vue'
 
 export default Vue.extend({
-  name: 'App'
+  name: 'App',
+  components: { Nav }
 })
 </script>
 
 <style >
 body {
   font-family: 'Poppins', sans-serif !important;
-  background: #fdfeff !important;
+  background: #fbfdff !important;
+  min-height: 100%;
 }
 .input {
   box-shadow: none !important;

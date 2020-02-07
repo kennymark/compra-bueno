@@ -1,10 +1,5 @@
 <template>
   <Layout>
-<<<<<<< Updated upstream
-    <h3 class="is-size-3 mb-3">
-      Orders
-    </h3>
-=======
     <h3 class="is-size-3 mb-3">Orders</h3>
     <b-input
       v-model="query"
@@ -26,16 +21,15 @@
     >
       <template slot="table-row" slot-scope="props">
         <div v-if="props.column.field === 'created_at'">
-          <span>{{new Date(props.row.created_at * 1000).toDateString()}}</span>
+          <span>{{ new Date(props.row.created_at * 1000).toDateString() }}</span>
         </div>
-        <span v-else>{{props.formattedRow[props.column.field]}}</span>
+        <span v-else>{{ props.formattedRow[props.column.field] }}</span>
       </template>
 
       <template slot="table-row" slot-scope="props">
-        <span v-if="props.column.field == 'total'">{{props.row.total /100| currency('£') }}</span>
+        <span v-if="props.column.field == 'total'">{{ props.row.total /100| currency('£') }}</span>
       </template>
     </vue-good-table>
->>>>>>> Stashed changes
   </Layout>
 </template>
 

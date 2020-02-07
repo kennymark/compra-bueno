@@ -1,13 +1,30 @@
 <template>
   <Layout>
-    <b-input placeholder="Search..." size="is-medium" @keypress="search" class="shadow-sm rounded" />
+    <b-input
+      placeholder="Search..."
+      size="is-medium"
+      class="shadow-sm rounded"
+      @keypress="search"
+    />
     <div class="row">
-      <div v-for="(item, key) in products" :key="key" class="col-lg-3 col-md-6 my-3">
+      <div
+        v-for="(item, key) in products"
+        :key="key"
+        class="col-lg-3 col-md-6 my-3"
+      >
         <ProductCard :product="item" />
       </div>
     </div>
-    <b-pagination v-if="products.length" :current.sync="currentPage" :total="rows" class="my-4" />
-    <b-loading :active.sync="isLoading" :can-cancel="true" />
+    <b-pagination
+      v-if="products.length"
+      :current.sync="currentPage"
+      :total="rows"
+      class="my-4"
+    />
+    <b-loading
+      :active.sync="isLoading"
+      :can-cancel="true"
+    />
   </Layout>
 </template>
 

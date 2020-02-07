@@ -1,9 +1,7 @@
 
 <template>
   <div class="container w-50 my-5">
-    <h1 class="h3 mb-3 font-weight-normal">
-      Please sign in
-    </h1>
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
     <form @submit="login">
       <div class="form-group">
@@ -14,31 +12,22 @@
           type="email"
           size="is-medium"
           aria-describedby="emailHelp"
-<<<<<<< Updated upstream
-=======
+          updated
           class="shadow-sm rounded"
-          v-model="form.email"
->>>>>>> Stashed changes
         />
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
         <b-input
           id="exampleInputPassword1"
-          class="shadow-sm rounded"
           v-model="form.password"
+          class="shadow-sm rounded"
           type="password"
           size="is-medium"
         />
       </div>
 
-      <b-button
-        type="is-primary"
-        size="is-medium"
-        native-type="submit"
-      >
-        Login
-      </b-button>
+      <b-button type="is-primary" size="is-medium" native-type="submit">Login</b-button>
     </form>
   </div>
 </template>

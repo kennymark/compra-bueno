@@ -1,41 +1,29 @@
 <template>
   <Layout>
-<<<<<<< Updated upstream
-    <h3 class="is-size-3 mb-3">
-      Products
-    </h3>
-=======
     <h3 class="is-size-3 mb-3">Products</h3>
->>>>>>> Stashed changes
     <b-input
       v-model="query"
       placeholder="Search..."
       size="is-medium"
-<<<<<<< Updated upstream
-      class="my-4"
-=======
       class="my-4 shadow-sm rounded"
->>>>>>> Stashed changes
     />
-
     <vue-good-table
       class="border-0 bg-white rounded-lg"
       :columns="columns"
       :rows="products"
       :pagination-options="{
-        enabled: true,
-        mode: 'records',
-        perPage: 10,
-        perPageDropdown: [5, 10, 20],
-        dropdownAllowAll: true,
-      }"
+          enabled: true,
+          perPage: 10,
+          perPageDropdown: [5, 10, 20],
+          dropdownAllowAll: true,
+        }"
       :select-options="{ enabled: true,}"
       :search-options="{externalQuery: query,enabled: true}"
       @on-row-click="onRowClick"
     >
       <template slot="table-row" slot-scope="props">
         <div v-if="props.column.field === 'name'">
-          <span>{{props.row.name | truncate('20')}}</span>
+          <span>{{ props.row.name | truncate('20') }}</span>
         </div>
       </template>
     </vue-good-table>
