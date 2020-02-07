@@ -4,43 +4,21 @@
     class="has-background-white position-fixed fixed-top h-100 cart-sidebar p-3 border-right shadow-lg ml-auto"
   >
     <div class="d-flex justify-content-between align-items-center px-3">
-      <h1 class="is-size-4">
-        Your Cart
-      </h1>
+      <h1 class="is-size-4">Shopping Cart</h1>
       <div class="buttons">
         <b-button
           type="is-warning"
           class="float-right font-weight-bold shadow-sm"
           @click="checkOut"
-        >
-          Checkout
-        </b-button>
-        <b-button
-          type="is-dark"
-          class="shadow-sm border"
-          @click="closeCart"
-        >
-          Close X
-        </b-button>
+        >Checkout</b-button>
+        <b-button type="is-dark" class="shadow-sm border" @click="closeCart">Close X</b-button>
       </div>
     </div>
 
-    <div
-      v-for="(product, key) in cart"
-      :key="key"
-      class="border-bottom bg-white px-4 py-2"
-    >
-      <cart-product
-        :length="cart.length"
-        :product="product"
-      />
+    <div v-for="(product, key) in cart" :key="key" class="border-bottom bg-white px-4 py-2">
+      <cart-product :length="cart.length" :product="product" />
     </div>
-    <h5
-      v-if="!cart.length"
-      class="text-center m-3 border-0"
-    >
-      Cart is Empty
-    </h5>
+    <h5 v-if="!cart.length" class="text-center m-3 border-0 mt-5 has-text-weight-bold">Cart is empty</h5>
   </div>
 </template>
 
@@ -73,7 +51,7 @@ export default {
 <style scoped>
 .cart-sidebar {
   z-index: 100;
-  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
   scroll-behavior: smooth;
   overflow-y: scroll;
   max-width: 570px;

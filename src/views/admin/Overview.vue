@@ -49,11 +49,11 @@
         </div>
 
         <div class="d-flex flex-column my-4">
-          <h5 class="font-weight-bold text-secondary is-size-4 my-2">Top Products</h5>
+          <h5 class="font-weight-bold text-secondary is-size-4 my-2 bg-white">Top Products</h5>
           <div
             v-for="(product, key) in products"
             :key="key"
-            class="row border rounded-lg my-2 ro w-100 p-3"
+            class="row border rounded-lg my-2 ro w-100 p-3 shadow-sm bg-white"
           >
             <div class="col-3 d-flex justify-content-center align-content-center">
               <img
@@ -71,7 +71,11 @@
       <div class="col-lg mx-auto">
         <h3 class="text-center font-weight-bold is-size-4 mb-3">Activity</h3>
         <div style="max-height:80vh; overflow-y:scroll">
-          <div v-for="(activity, key) in orders" :key="key" class="col my-2 rounded-lg border p-3">
+          <div
+            v-for="(activity, key) in orders"
+            :key="key"
+            class="col my-2 rounded-lg border p-3 shadow-sm bg-white"
+          >
             <p>
               Order with total
               <b>{{ activity.total/100 | currency('£') }}</b> was placed
@@ -122,7 +126,7 @@ export default {
     const db = firestore
       .collection('products')
       .limit(6)
-      .orderBy('price.max')
+      .orderBy('name')
     const snapshot = await db.get()
     this.products = snapshot.docs.map(snap => {
       return { id: snap.id, ...snap.data() }

@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <span>
     <Nav />
-
-    <router-view />
+    <router-view @click="closeCart" />
     <transition name="slide-fade" :duration="1000">
       <CartModal :isCartOpen="$store.state.isCartOpen" />
     </transition>
-  </div>
+  </span>
 </template>
 
 <script lang="ts">
@@ -16,26 +15,34 @@ import Footer from './components/Footer.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { Nav }
+  components: { Nav },
+  methods: {
+    closeCart() {
+      console.log('close cart')
+      this.$store.commit('openCart', false)
+    }
+  }
 })
 </script>
 
-<style >
+<style lang='scss'>
+$bg: #fbfdff;
 body {
   font-family: 'Poppins', sans-serif !important;
-  background: #fbfdff !important;
+  background: $bg !important;
   min-height: 100%;
 }
 .input {
   box-shadow: none !important;
-  border: 1px solid rgb(241, 241, 241) !important;
+  border: 1px solid white !important;
   font-family: inherit;
   font-size: 14px !important;
   padding: 25px !important;
 }
 .input:focus {
-  transition: border 0.3s ease-in;
-  border: 1px solid #f2edff !important;
+  transition: border 0.5s ease-in;
+  border: 1px solid darken($bg, 6) !important;
+  background: white !important;
 }
 a:hover {
   text-decoration: none !important;
@@ -50,6 +57,11 @@ a {
   color: white;
 }
 
+.vgt-wrap {
+  border: none;
+  box-shadow: 3px 8px 7px darken(white, 10);
+  border-radius: 10px;
+}
 .vgt-table thead th {
   background: white !important;
 }
