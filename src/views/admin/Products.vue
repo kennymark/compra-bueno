@@ -48,8 +48,20 @@ export default {
         { label: 'Price', field: 'price.max' },
         { label: 'On Sale', field: 'price.on_sale' },
         { label: 'Quantity', field: 'quantity' },
-        { label: 'Added', field: 'dateadded' },
-        { label: 'Updated', field: 'dateupdated' }
+        {
+          label: 'Added',
+          field: 'dateadded',
+          type: 'date',
+          dateInputFormat: 'yyyy-mm-dd[T]Z',
+          dateOutputFormat: 'E Lo MMM Y'
+        },
+        {
+          label: 'Updated',
+          field: 'dateupdated',
+          type: 'date',
+          dateInputFormat: 'yyyy-mm-dd[T]HH:mm:ssZ',
+          dateOutputFormat: 'E Lo MMM Y'
+        }
       ],
       products: []
     }

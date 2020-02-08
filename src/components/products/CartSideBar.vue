@@ -57,12 +57,13 @@ export default {
 <style scoped>
 .cart-sidebar {
   z-index: 100;
-  scroll-behavior: smooth;
-  overflow-y: scroll;
   max-width: 570px;
 }
 
 .overlay {
   background: #00000057;
+  overflow-y: scroll;
+  z-index: 99;
+  z-index: 100;
 }
 </style>
