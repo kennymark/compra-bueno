@@ -26,7 +26,7 @@ export default Vue.extend({
 </script>
 
 <style lang='scss'>
-$bg: #fbfdff;
+$bg: #f5ecc707;
 body {
   font-family: 'Poppins', sans-serif !important;
   background: $bg !important;

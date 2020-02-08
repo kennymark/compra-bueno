@@ -209,6 +209,14 @@ export default {
               })
             }
           })
+          .catch(err => {
+            this.$buefy.notification.open({
+              message: 'Connection error, please try again' || err,
+              type: 'is-warning',
+              duration: 10000
+            })
+            this.isLoading = false
+          })
       })
     }
   }

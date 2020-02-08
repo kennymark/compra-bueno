@@ -5,7 +5,7 @@
     @click="closeCart"
   >
     <div class="has-background-white cart-sidebar p-3 border-right shadow-lg ml-auto" @click.stop>
-      <div class="d-flex justify-content-between align-items-center px-3">
+      <div class="d-flex justify-content-between align-items-center px-3 pb-3 border-bottom">
         <h1 class="is-size-4">Shopping Cart</h1>
         <div class="buttons">
           <b-button
@@ -57,13 +57,16 @@ export default {
 <style scoped>
 .cart-sidebar {
   z-index: 100;
-  max-width: 570px;
+  max-width: 580px;
 }
 
 .overlay {
-  background: #00000057;
+  background: #00000069;
   overflow-y: scroll;
-  z-index: 99;
-  z-index: 100;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 </style>

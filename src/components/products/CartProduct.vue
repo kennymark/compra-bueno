@@ -1,9 +1,9 @@
 <template>
-  <div v-if="length" class="row">
+  <div v-if="length" class="row is-hovered">
     <div class="col-3 d-flex justify-content-center align-content-center">
       <img :src="product.imageurls.split(',')[0] || product.imageurls" class="img-fluid" alt />
     </div>
-    <div class="offset-2 col p-3">
+    <div class="offset-1 col p-2">
       <h5 class="font-weight-bold text-capitalize">
         {{ product.title }}
         <span class="float-right">
@@ -17,7 +17,7 @@
       </h5>
 
       <p class="text-secondary">
-        Quantity
+        <small>{{product.name | truncate(30)}}</small>
         <span class="font-weight-bold text-dark">
           <div class="field has-addons my-3">
             <p class="control">
@@ -61,4 +61,8 @@ export default {
 </script>
 
 <style scoped>
+.is-hovered:hover {
+  transition: transform 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transform: scale(1.1);
+}
 </style>

@@ -13,7 +13,7 @@
           </div>
 
           <div class="col-lg p-3 mr-2 rounded shadow bg-white">
-            <h5 class="is-size-5">Product Sold</h5>
+            <h5 class="is-size-5">Products Sold</h5>
             <small class="text-muted mt-3">Order this month</small>
             <h2 class="is-size-3 mt-2">328</h2>
           </div>

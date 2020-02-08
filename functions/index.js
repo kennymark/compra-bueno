@@ -4,9 +4,9 @@ const stripe = require('stripe')('sk_test_RDF8NobT5x5gUJ4mhGAIVGW600KSVRKSG1', {
 const cors = require('cors')
 const express = require('express')
 const app = express()
-const adminConfig = JSON.parse(process.env.FIREBASE_CONFIG);
 
-admin.initializeApp(adminConfig)
+
+admin.initializeApp()
 const db = admin.firestore().collection('products')
 const orders = admin.firestore().collection('orders')
 
@@ -90,7 +90,27 @@ async function createOrder(data, cart) {
   })
 }
 
+
+function getCustomer(req, res) {
+  const data = await stripe.customers.retrieve(req.body.customer_id)
+  res.status(200).json(data)
+}
+
+function createCustomer(req, res) {
+  try {
+    const data = await stripe.customers.create(req.body)
+    res.status(201).json(data)
+  } catch (error) {
+    res.json(error)
+  }
+
+}
+
 /**App Entry */
+app.route('customer')
+  .get(getCustomer)
+  .post(createCustomer)
+
 app.route('/')
   .get((_, res) => res.send('Welcome to the CompraBueno API'))
   .post(async (req, res) => {
@@ -110,4 +130,4 @@ app.route('/')
 
   })
 
-exports.checkout = functions.https.onRequest(app)
+export const checkout = functions.https.onRequest(app)
