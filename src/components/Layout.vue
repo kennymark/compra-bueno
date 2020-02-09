@@ -1,12 +1,12 @@
 <template>
-  <div class="container my-4 layout">
+  <div class="container my-4 layout ">
     <slot />
   </div>
 </template>
 
 
 <style >
-.container{
-  min-height: 100%;
+.layout{
+  min-height: 90vh;
 }
 </style>

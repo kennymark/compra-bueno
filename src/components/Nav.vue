@@ -1,5 +1,8 @@
 <template>
-  <b-navbar class="bg-white header">
+  <b-navbar
+    class="header"
+    :transparent="true"
+  >
     <template slot="brand">
       <b-navbar-item
         tag="router-link"
@@ -100,6 +103,6 @@ export default {
 
 <style >
 .header {
-  border: 1px solid rgb(243, 243, 243);
+  border-bottom: 1px solid rgb(243, 243, 243);
 }
 </style>

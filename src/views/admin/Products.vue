@@ -41,8 +41,8 @@
           <span>{{ props.row.name | truncate('20') }}</span>
         </div>
       </template>
+      <router-view />
     </vue-good-table>
-    <router-view />
   </Layout>
 </template>
 
@@ -63,16 +63,16 @@ export default {
         {
           label: 'Added',
           field: 'dateadded',
-          type: 'date',
-          dateInputFormat: 'yyyy-mm-dd[T]Z',
-          dateOutputFormat: 'E Lo MMM Y'
+          // type: 'date',
+          // dateInputFormat: 'yyyy-mm-dd[T]Z',
+          // dateOutputFormat: 'E Lo MMM Y'
         },
         {
           label: 'Updated',
           field: 'dateupdated',
-          type: 'date',
-          dateInputFormat: 'yyyy-mm-dd[T]HH:mm:ssZ',
-          dateOutputFormat: 'E Lo MMM Y'
+          // type: 'date',
+          // dateInputFormat: 'yyyy-mm-dd[T]HH:mm:ssZ',
+          // dateOutputFormat: 'E Lo MMM Y'
         }
       ],
       products: []

@@ -19,7 +19,7 @@
       v-if="products.length"
       :current.sync="currentPage"
       :total="rows"
-      class="my-4"
+      class="mt-4"
     />
     <b-loading
       :active.sync="isLoading"

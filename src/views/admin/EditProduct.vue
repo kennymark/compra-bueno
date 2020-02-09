@@ -1,5 +1,6 @@
 <template>
   <Layout>
+  <router-view/>
     <h3 class="is-size-3">
       Edit Product
     </h3>
@@ -65,13 +66,13 @@
             >
               <div class="col-md">
                 <b-input
-                  :id="value.toString()+ Math.random().toString()"
+                  :id="value.toString()+ Math.random()"
                   v-model="feature.key"
                 />
               </div>
               <div class="col-md">
                 <b-input
-                  :id="value.toString()+ Math.random().toString()"
+                  :id="value.toString()+ Math.random()"
                   v-model="feature.value[0]"
                 />
               </div>
