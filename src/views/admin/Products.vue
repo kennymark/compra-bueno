@@ -1,8 +1,17 @@
 <template>
   <Layout>
     <div class="d-flex justify-content-between">
-      <h3 class="is-size-3 mb-3">Products</h3>
-      <b-button type="is-dark" class="shadow" size="is-medium" @click="addProduct">Create Product</b-button>
+      <h3 class="is-size-3 mb-3">
+        Products
+      </h3>
+      <b-button
+        type="is-dark"
+        class="shadow"
+        size="is-medium"
+        @click="addProduct"
+      >
+        Create Product
+      </b-button>
     </div>
     <b-input
       v-model="query"
@@ -15,16 +24,19 @@
       :columns="columns"
       :rows="products"
       :pagination-options="{
-          enabled: true,
-          perPage: 10,
-          perPageDropdown: [5, 10, 20],
-          dropdownAllowAll: true,
-        }"
+        enabled: true,
+        perPage: 10,
+        perPageDropdown: [5, 10, 20],
+        dropdownAllowAll: true,
+      }"
       :select-options="{ enabled: true,}"
       :search-options="{externalQuery: query,enabled: true}"
       @on-row-click="onRowClick"
     >
-      <template slot="table-row" slot-scope="props">
+      <template
+        slot="table-row"
+        slot-scope="props"
+      >
         <div v-if="props.column.field === 'name'">
           <span>{{ props.row.name | truncate('20') }}</span>
         </div>

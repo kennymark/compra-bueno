@@ -49,7 +49,7 @@
         </div>
 
         <div class="d-flex flex-column my-4">
-          <h5 class="font-weight-bold text-secondary is-size-4 my-2 bg-white">Top Products</h5>
+          <h4 class="is-size-4 my-2">Top Products</h4>
           <div
             v-for="(product, key) in products"
             :key="key"

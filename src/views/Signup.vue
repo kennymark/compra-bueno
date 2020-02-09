@@ -1,6 +1,8 @@
 <template>
   <div class="container w-50 my-5">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+    <h1 class="h3 mb-3 font-weight-normal">
+      Please sign up
+    </h1>
 
     <form @submit="signup">
       <div class="form-group">
@@ -27,7 +29,13 @@
         />
       </div>
 
-      <b-button type="is-primary" size="is-medium" native-type="submit">Submit</b-button>
+      <b-button
+        type="is-primary"
+        size="is-medium"
+        native-type="submit"
+      >
+        Submit
+      </b-button>
     </form>
   </div>
 </template>

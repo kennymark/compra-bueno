@@ -3,7 +3,9 @@
   <div class="container my-5">
     <div class="row">
       <div class="col-lg-6 col-sm-12 mx-auto mt-5">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 font-weight-normal">
+          Please sign in
+        </h1>
         <form @submit="login">
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
@@ -33,7 +35,9 @@
             size="is-medium"
             native-type="submit"
             class="has-text-weight-bold"
-          >Login</b-button>
+          >
+            Login
+          </b-button>
         </form>
       </div>
     </div>

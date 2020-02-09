@@ -4,3 +4,9 @@
   </div>
 </template>
 
+
+<style >
+.container{
+  min-height: 100%;
+}
+</style>

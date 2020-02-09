@@ -1,6 +1,8 @@
 <template>
   <Layout>
-    <h3 class="is-size-3 mb-3">Customers</h3>
+    <h3 class="is-size-3 mb-3">
+      Customers
+    </h3>
     <div class="row">
       <div class="col-lg">
         <div class="row">
@@ -23,7 +25,10 @@
               :search-options="{externalQuery: query,enabled: true}"
               @on-row-click="onRowClick"
             >
-              <template slot="table-row" slot-scope="props">
+              <template
+                slot="table-row"
+                slot-scope="props"
+              >
                 <div v-if="props.column.field == 'createdAt'">
                   <span>{{ new Date(props.row.createdAt).toDateString() }}</span>
                 </div>

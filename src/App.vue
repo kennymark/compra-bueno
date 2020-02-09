@@ -3,7 +3,7 @@
     <Nav />
     <router-view @click="closeCart" />
     <transition name="slide-fade">
-      <cart-side-bar :isCartOpen="$store.state.isCartOpen" />
+      <cart-side-bar :is-cart-open="$store.state.isCartOpen" />
     </transition>
   </span>
 </template>
@@ -26,7 +26,7 @@ export default Vue.extend({
 </script>
 
 <style lang='scss'>
-$bg: #f5ecc707;
+$bg: #f1f1f162;
 body {
   font-family: 'Poppins', sans-serif !important;
   background: $bg !important;
