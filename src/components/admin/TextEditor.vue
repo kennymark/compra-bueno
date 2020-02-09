@@ -5,130 +5,126 @@
       :editor="editor"
     >
       <div class="menubar">
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.bold() }"
+        <b-button
+          type="is-text"
+          :class="{ 'is-link': isActive.bold() }"
           @click="commands.bold"
         >
-          <icon name="bold" />
-        </button>
+          <b-icon icon="format-bold" />
+        </b-button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.italic() }"
+        <b-button
+          type="is-text"
+          :class="{ 'is-link': isActive.italic() }"
           @click="commands.italic"
         >
-          <icon name="italic" />
-        </button>
+          <b-icon icon="format-italic" />
+        </b-button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.strike() }"
+        <b-button
+          type="is-text"
+          :class="{ 'is-link': isActive.strike() }"
           @click="commands.strike"
         >
-          <icon name="strike" />
-        </button>
+          <b-icon icon="format-strikethrough" />
+        </b-button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.underline() }"
+        <b-button
+          type="is-text"
+          :class="{ 'is-link': isActive.underline() }"
           @click="commands.underline"
         >
-          <icon name="underline" />
-        </button>
+          <b-icon icon="format-underline" />
+        </b-button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.code() }"
-          @click="commands.code"
-        >
-          <icon name="code" />
-        </button>
+        
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.paragraph() }"
+        <b-button
+          type="is-text"
+          :class="{ 'is-link': isActive.paragraph() }"
           @click="commands.paragraph"
         >
-          <icon name="paragraph" />
-        </button>
+          P
+        </b-button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.heading({ level: 1 }) }"
+        <b-button
+          type="is-text"
+          :class="{ 'is-link': isActive.heading({ level: 1 }) }"
           @click="commands.heading({ level: 1 })"
         >
           H1
-        </button>
+        </b-button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.heading({ level: 2 }) }"
+        <b-button
+          type="is-text"
+          :class="{ 'is-link': isActive.heading({ level: 2 }) }"
           @click="commands.heading({ level: 2 })"
         >
           H2
-        </button>
+        </b-button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.heading({ level: 3 }) }"
+        <b-button
+          type="is-text"
+          :class="{ 'is-link': isActive.heading({ level: 3 }) }"
           @click="commands.heading({ level: 3 })"
         >
           H3
-        </button>
+        </b-button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.bullet_list() }"
+        <b-button
+          type="is-text"
+          :class="{ 'is-link': isActive.bullet_list() }"
           @click="commands.bullet_list"
         >
-          <icon name="ul" />
-        </button>
+          <b-icon icon="format-list-bulleted" />
+        </b-button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.ordered_list() }"
+        <b-button
+          type="is-text"
+          :class="{ 'is-link': isActive.ordered_list() }"
           @click="commands.ordered_list"
         >
-          <icon name="ol" />
-        </button>
+          <b-icon icon="format-line-weight" />
+        </b-button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.blockquote() }"
+        <b-button
+          type="is-text"
+          :class="{ 'is-link': isActive.blockquote() }"
           @click="commands.blockquote"
         >
-          <icon name="quote" />
-        </button>
+          <b-icon icon="format-quote-close" />
+        </b-button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.code_block() }"
+        <b-button
+          type="is-text"
+          :class="{ 'is-link': isActive.code_block() }"
           @click="commands.code_block"
         >
-          <icon name="code" />
-        </button>
+          <b-icon icon="xml" />
+        </b-button>
 
-        <button
-          class="menubar__button"
+        <b-button
+          type="is-text"
+        
           @click="commands.horizontal_rule"
         >
-          <icon name="hr" />
-        </button>
+          <b-icon icon="format-align-middle" />
+        </b-button>
 
-        <button
-          class="menubar__button"
+        <b-button
+          type="is-text"
+        
           @click="commands.undo"
         >
-          <icon name="undo" />
-        </button>
+          <b-icon icon="undo" />
+        </b-button>
 
-        <button
-          class="menubar__button"
+        <b-button
+          type="is-text"
           @click="commands.redo"
         >
-          <icon name="redo" />
-        </button>
+          <b-icon icon="redo" />
+        </b-button>
       </div>
     </editor-menu-bar>
 
@@ -140,7 +136,6 @@
 </template>
 
 <script>
-import Icon from 'Components/Icon'
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import {
   Blockquote,
@@ -165,7 +160,6 @@ export default {
   components: {
     EditorContent,
     EditorMenuBar,
-    Icon
   },
   props: ['content'],
   data() {

@@ -1,6 +1,8 @@
 <template>
   <Layout>
-    <h3 class="is-size-3 mb-3">Orders</h3>
+    <h3 class="is-size-3 mb-3">
+      Orders
+    </h3>
     <b-input
       v-model="query"
       placeholder="Search..."
@@ -19,7 +21,10 @@
       :search-options="{externalQuery: query,enabled: true}"
       @on-row-click="onRowClick"
     >
-      <template slot="table-row" slot-scope="props">
+      <template
+        slot="table-row"
+        slot-scope="props"
+      >
         <span v-if="props.column.field == 'total'">{{ props.row.total /100| currency('£') }}</span>
       </template>
     </vue-good-table>
@@ -27,7 +32,7 @@
 </template>
 
 <script>
-import { firestore } from '../../../firebase.config'
+import { firestore } from '../../../../firebase.config'
 import 'vue-good-table/dist/vue-good-table.css'
 import { VueGoodTable } from 'vue-good-table'
 export default {

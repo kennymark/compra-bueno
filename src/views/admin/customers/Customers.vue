@@ -44,7 +44,7 @@
 <script>
 import 'vue-good-table/dist/vue-good-table.css'
 import { VueGoodTable } from 'vue-good-table'
-import { columns, rows } from './table-data'
+import { columns, rows } from '../table-data'
 
 export default {
   components: { VueGoodTable },

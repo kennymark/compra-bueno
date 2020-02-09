@@ -1,26 +1,38 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import { auth } from '../../firebase.config'
-import Account from '../views/account/Account.vue'
-import AccountAddressPayment from '../views/account/AddressPayments.vue'
-import AccountOrders from '../views/account/Orders.vue'
-import AccountSecurity from '../views/account/Security.vue'
-import AddProduct from '../views/admin/AddProduct.vue'
-import Admin from '../views/admin/Admin.vue'
-import CustomerDetails from '../views/admin/CustomerDetails.vue'
-import Customers from '../views/admin/Customers.vue'
-import EditProduct from '../views/admin/EditProduct.vue'
-import OrderDetails from '../views/admin/OrderDetails.vue'
-import Orders from '../views/admin/Orders.vue'
-import AdminOverview from '../views/admin/Overview.vue'
-import AdminProducts from '../views/admin/Products.vue'
-import AllProducts from '../views/AllProducts.vue'
-import Checkout from '../views/Checkout.vue'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
-import PageNotFound from '../views/PageNotFound.vue'
-import ProductDetail from '../views/ProductDetail.vue'
 import Signup from '../views/Signup.vue'
+import Checkout from '../views/Checkout.vue'
+import AllProducts from '../views/AllProducts.vue'
+
+// Accounts
+import Account from '../views/account/Account.vue'
+import AccountOrders from '../views/account/Orders.vue'
+import AccountSecurity from '../views/account/Security.vue'
+import AccountAddressPayment from '../views/account/AddressPayments.vue'
+// Admin 
+import Admin from '../views/admin/Admin.vue'
+import AdminOverview from '../views/admin/Overview.vue'
+
+// Customers
+import CustomersIndex from '../views/admin/customers/Index.vue'
+import Customers from '../views/admin/customers/Customers.vue'
+import CustomerDetails from '../views/admin/customers/CustomerDetails.vue'
+
+// Orders
+import OrdersIndex from '../views/admin/orders/Index.vue'
+import Orders from '../views/admin/orders/Orders.vue'
+import OrderDetails from '../views/admin/orders/OrderDetails.vue'
+
+import AdminProductsIndex from '../views/admin/products/Index.vue'
+import AdminProducts from '../views/admin/products/Products.vue'
+import AddProduct from '../views/admin/products/AddProduct.vue'
+import EditProduct from '../views/admin/products/EditProduct.vue'
+
+import ProductDetail from '../views/ProductDetail.vue'
+import PageNotFound from '../views/PageNotFound.vue'
 
 const routes: RouteConfig[] = [
   { path: '/', name: 'home', component: Home },
@@ -48,10 +60,11 @@ const routes: RouteConfig[] = [
         ]
       },
       {
-        name: 'admin-products', path: 'products', component: AdminProducts, meta: { requiresAuth: true },
+        name: 'products-home', path: 'products', component: AdminProductsIndex, meta: { requiresAuth: true },
         children: [
-          { path: '/add-product', name: 'add-product', component: AddProduct },
-          { path: '/edit-product/:id', name: 'edit-product', component: EditProduct },
+          { path: '', name: 'admin-products', component: AdminProducts },
+          { path: 'add-product', name: 'add-product', component: AddProduct },
+          { path: 'edit-product/:id', name: 'edit-product', component: EditProduct },
         ]
       },
       {

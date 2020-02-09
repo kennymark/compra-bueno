@@ -1,12 +1,11 @@
 <template>
   <Layout>
-    <h3 class="is-size-3">
+    <h3 class="is-size-3 my-3">
       Edit Product
     </h3>
-
     <div class="row">
       <div
-        class="col-lg d-flex flex-column justify-content-center"
+        class="col-lg-4 border d-flex bg-white flex-column justify-content-center"
         style="max-height:500px"
       >
         <img
@@ -26,7 +25,7 @@
           </b-button>
         </div>
       </div>
-      <div class="col-lg">
+      <div class="col-lg offset-1">
         <form
           @submit="onSubmit"
           @reset="onReset"
@@ -36,6 +35,7 @@
               id="product-name"
               v-model="product.name"
               native-type="text"
+              class="border shadow-sm rounded"
             />
           </b-field>
 
@@ -46,12 +46,14 @@
                 <b-input
                   id="price_max"
                   v-model="product.price.min"
+                  class="border shadow-sm rounded"
                 />
               </div>
               <div class="col">
                 <b-input
                   id="price_min"
                   v-model="product.price.max"
+                  class="border shadow-sm rounded"
                 />
               </div>
             </div>
@@ -72,53 +74,53 @@
               </div>
               <div class="col-md">
                 <b-input
-                  :id="value.toString()+ Math.random().toString()"
+                  :id="value.toString()+ Math.random()"
                   v-model="feature.value[0]"
                 />
               </div>
             </div>
           </div>
-
-          <b-field class="mt-3">
-            <b-button
-              native-type="submit"
-              type="is-primary"
-              class="mr-2"
-            >
-              Add
-            </b-button>
-            <b-button
-              native-type="reset"
-              type="is-light"
-            >
-              Reset
-            </b-button>
-          </b-field>
         </form>
       </div>
     </div>
     <div>
-      <h4 class="is-size-4">
+      <h4 class="is-size-4 mt-4 mb-2">
         Description
       </h4>
-      <editor-content
-        :editor="editor"
-        class="border p-4 mt-4 rounded-lg text-muted"
+      <!-- :content="product.descriptions[0].value || null"  -->
+      <editor
+        class="border bg-white p-4  rounded shadow-sm"
       />
     </div>
+    <b-field class="mt-3">
+      <b-button
+        native-type="submit"
+        type="is-warning"
+        class="mr-2  has-text-weight-bold"
+      >
+        Submit
+      </b-button>
+      <b-button
+        native-type="reset"
+        type="is-dark"
+        class=" has-text-weight-bold"
+      >
+        Reset
+      </b-button>
+    </b-field>
   </Layout>
 </template>
 
 <script>
-
+import editor from '../../../components/admin/TextEditor'
 export default {
-  components: {
-
+components:{
+  editor
   },
   data() {
     return {
       editor: null,
-      product: {},
+      product: this.$store.state.adminCurrentProduct,
       form: {
         name: '',
         name: '',
@@ -127,6 +129,36 @@ export default {
     }
   },
   mounted() {
+    this.editor = new Editor({
+      extensions: [
+        new Blockquote(),
+        new BulletList(),
+        new CodeBlock(),
+        new HardBreak(),
+        new Heading({ levels: [1, 2, 3] }),
+        new HorizontalRule(),
+        new ListItem(),
+        new OrderedList(),
+        new TodoItem(),
+        new TodoList(),
+        new Link(),
+        new Bold(),
+        new Code(),
+        new Italic(),
+        new Strike(),
+        new Underline(),
+        new History()
+      ],
+      content: this.product.descriptions[0].value
+    })
+  },
+  beforeDestroy() {
+    this.editor.destroy()
+  },
+
+  methods: {
+    onSubmit() {},
+    onReset() {}
   }
 }
 </script>

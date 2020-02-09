@@ -48,7 +48,7 @@
 
 <script>
 import { VueGoodTable } from 'vue-good-table'
-import { firestore } from '../../../firebase.config'
+import { firestore } from '../../../../firebase.config'
 export default {
   components: { VueGoodTable },
   data() {

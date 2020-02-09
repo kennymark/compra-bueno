@@ -1,19 +1,14 @@
 <template>
   <Layout>
-  <router-view/>
     <h3 class="is-size-3">
       Edit Product
     </h3>
+
     <div class="row">
       <div
         class="col-lg d-flex flex-column justify-content-center"
         style="max-height:500px"
       >
-        <img
-          :src="product.imageurls.split(',')[0] || product.imageurls"
-          class="img-fluid"
-          alt
-        >
         <div class="buttons my-3">
           <b-button
             class="border mr-3"
@@ -72,7 +67,7 @@
               </div>
               <div class="col-md">
                 <b-input
-                  :id="value.toString()+ Math.random()"
+                  :id="value.toString()+ Math.random().toString()"
                   v-model="feature.value[0]"
                 />
               </div>
@@ -85,7 +80,7 @@
               type="is-primary"
               class="mr-2"
             >
-              Submit
+              Add
             </b-button>
             <b-button
               native-type="reset"
@@ -104,17 +99,21 @@
       <editor-content
         :editor="editor"
         class="border p-4 mt-4 rounded-lg text-muted"
-      />=======
+      />
     </div>
   </Layout>
 </template>
 
 <script>
+
 export default {
+  components: {
+
+  },
   data() {
     return {
       editor: null,
-      product: this.$store.state.adminCurrentProduct,
+      product: {},
       form: {
         name: '',
         name: '',
@@ -123,36 +122,6 @@ export default {
     }
   },
   mounted() {
-    this.editor = new Editor({
-      extensions: [
-        new Blockquote(),
-        new BulletList(),
-        new CodeBlock(),
-        new HardBreak(),
-        new Heading({ levels: [1, 2, 3] }),
-        new HorizontalRule(),
-        new ListItem(),
-        new OrderedList(),
-        new TodoItem(),
-        new TodoList(),
-        new Link(),
-        new Bold(),
-        new Code(),
-        new Italic(),
-        new Strike(),
-        new Underline(),
-        new History()
-      ],
-      content: this.product.descriptions[0].value
-    })
-  },
-  beforeDestroy() {
-    this.editor.destroy()
-  },
-
-  methods: {
-    onSubmit() {},
-    onReset() {}
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-lg-2 col-md-1 d-flex flex-sm-row border-right">
+    <div class="col-lg-2  bg-white col-md-1 d-flex flex-sm-row border-right">
       <b-menu class="w-100 mt-5">
         <b-menu-list class="w-100">
           <b-menu-item
