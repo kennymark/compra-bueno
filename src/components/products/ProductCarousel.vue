@@ -6,9 +6,20 @@
     :interval="interval"
     class="bg-white"
   >
-    <b-carousel-item v-for="(product, i) in products" :key="i" style="height:530px; cursor:pointer">
-      <div class="mx-auto" @click="viewProduct(product)">
-        <img :src="product.imageurls" :alt="product.name" class="ml-auto text-center" />
+    <b-carousel-item
+      v-for="(product, i) in products"
+      :key="i"
+      style="height:530px; cursor:pointer"
+    >
+      <div
+        class="mx-auto"
+        @click="viewProduct(product)"
+      >
+        <img
+          :src="product.imageurls"
+          :alt="product.name"
+          class="ml-auto text-center"
+        >
         <!-- <h1 class="m-3 is-size-5 ">{{product.name}}</h1> -->
       </div>
     </b-carousel-item>

@@ -10,7 +10,7 @@
           <img
             :src="product.imageurls.split(',')[0] || 'https://picsum.photos/600/300/?image=25'"
             :alt="product.name.substring(0,5)"
-          />
+          >
         </figure>
       </div>
       <div class="card-content">

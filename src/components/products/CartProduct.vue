@@ -1,7 +1,14 @@
 <template>
-  <div v-if="length" class="row is-hovered">
+  <div
+    v-if="length"
+    class="row is-hovered"
+  >
     <div class="col-3 d-flex justify-content-center align-content-center">
-      <img :src="product.imageurls.split(',')[0] || product.imageurls" class="img-fluid" alt />
+      <img
+        :src="product.imageurls.split(',')[0] || product.imageurls"
+        class="img-fluid"
+        alt
+      >
     </div>
     <div class="offset-1 col p-2">
       <h5 class="font-weight-bold text-capitalize">
@@ -17,11 +24,14 @@
       </h5>
 
       <p class="text-secondary">
-        <small>{{product.name | truncate(30)}}</small>
+        <small>{{ product.name | truncate(30) }}</small>
         <span class="font-weight-bold text-dark">
           <div class="field has-addons my-3">
             <p class="control">
-              <button class="button" @click="increment(product)">+</button>
+              <button
+                class="button"
+                @click="increment(product)"
+              >+</button>
             </p>
             <p class="control">
               <button class="button">
@@ -29,7 +39,10 @@
               </button>
             </p>
             <p class="control">
-              <button class="button" @click="decrease(product)">-</button>
+              <button
+                class="button"
+                @click="decrease(product)"
+              >-</button>
             </p>
           </div>
         </span>
