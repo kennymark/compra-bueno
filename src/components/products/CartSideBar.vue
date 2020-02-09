@@ -5,7 +5,7 @@
     @click="closeCart"
   >
     <div class="has-background-white cart-sidebar p-3 border-right shadow-lg ml-auto" @click.stop>
-      <div class="d-flex justify-content-between align-items-center px-3 pb-3 border-bottom">
+      <div class="d-flex justify-content-between align-items-center px-3">
         <h1 class="is-size-4">Shopping Cart</h1>
         <div class="buttons">
           <b-button
@@ -44,7 +44,6 @@ export default {
     checkOut() {
       this.$store.commit('openCart', false)
       this.$store.commit('setBuyNow', null)
-
       this.$router.push('/checkout')
     },
     closeCart() {
@@ -57,16 +56,13 @@ export default {
 <style scoped>
 .cart-sidebar {
   z-index: 100;
-  max-width: 580px;
-}
-
-.overlay {
-  background: #00000069;
+  scroll-behavior: smooth;
   overflow-y: scroll;
-
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  max-width: 570px;
+  min-height: 100%;
 }
-</style>
+.overlay {
+  background: #00000057;
+  overflow-y: scroll;
+}
+</style> 

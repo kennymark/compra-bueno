@@ -184,7 +184,7 @@ export default {
           email: user.email || 'anynomous@random.com',
           user_id: user.uid
         }
-        fetch(url2, {
+        fetch(url2 || url, {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(productInfo)
@@ -208,14 +208,6 @@ export default {
                 duration: 10000
               })
             }
-          })
-          .catch(err => {
-            this.$buefy.notification.open({
-              message: 'Connection error, please try again' || err,
-              type: 'is-warning',
-              duration: 10000
-            })
-            this.isLoading = false
           })
       })
     }

@@ -1,11 +1,12 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin')
-const stripe = require('stripe')('sk_test_RDF8NobT5x5gUJ4mhGAIVGW600KSVRKSG1', { maxNetworkRetries: 2, })
-const cors = require('cors')
-const express = require('express')
+import * as functions from 'firebase-functions';
+import * as  admin from 'firebase-admin'
+import Stripe from 'stripe'
+import * as cors from 'cors'
+import * as  express from 'express'
+
 const app = express()
-
-
+const stripeConfig: Stripe.StripeConfig = { maxNetworkRetries: 2, typescript: true, apiVersion: '2019-12-03' }
+const stripe = new Stripe('sk_test_RDF8NobT5x5gUJ4mhGAIVGW600KSVRKSG1', stripeConfig)
 admin.initializeApp()
 const db = admin.firestore().collection('products')
 const orders = admin.firestore().collection('orders')
@@ -14,7 +15,7 @@ app.use(cors())
 app.use(express.json())
 
 /**Calculates total based on whether its a cart or bynowproduct */
-async function getTotal(cart) {
+async function getTotal(cart: any) {
   let total = 0
   if (Array.isArray(cart)) {
     cart.map(product => {
@@ -29,28 +30,33 @@ async function getTotal(cart) {
 }
 
 /**
-@description  Gets all the cart data and checks for firebase to get its original price as that it can be changes. Also checks to see if the cart is just a buy product or a real cart */
-async function resolveCart(data) {
-  let cart = []
+ Gets all the cart data and checks for firebase to get 
+its original price as that it can be changes.
+Also checks to see if the cart is just a buy product or a real cart */
+async function resolveCart(data: any) {
+  const cart: any[] = []
   if (Array.isArray(data.cart)) {
-    data.cart.map((product) => {
-      const p = db.doc(product.id).get().then(prod => Object.assign({}, { quantity: product.quantity, price: prod.data().price && prod.data().price }))
+    data.cart.map((product: { id: string; quantity: any; }) => {
+      const p = db.doc(product.id).get()
+        .then(prod => Object.assign({}, { quantity: product.quantity, price: prod.data()?.price }))
       cart.push(p)
     })
     return Promise.all(cart)
   }
   else {
-    const p = db.doc(data.cart.id).get().then(prod => Object.assign({}, { quantity: data.cart.quantity, price: prod.data().price && prod.data().price }))
+    const p = db.doc(data.cart.id).get().then(prod => Object.assign({}, { quantity: data.cart.quantity, price: prod.data()?.price }))
     return Promise.resolve(p)
   }
 }
 
 
-async function applyDiscount(percentage, price) {
+async function applyDiscount(percentage: number, price: number) {
   return price - (percentage / 100 * price)
 }
+
+
 /**Charges the customer and sets some custom attributes */
-async function chargeMoney(data, total) {
+async function chargeMoney(data: any, total: any) {
   return stripe.charges.create({
     amount: parseInt(total) * 100,
     currency: 'gbp',
@@ -75,28 +81,29 @@ async function chargeMoney(data, total) {
 }
 
 /**Creates an order in firebase */
-async function createOrder(data, cart) {
-  return await orders.add({
-    total: data.amount,
-    stripe_id: data.id,
+async function createOrder(data: any, cart: any) {
+  const order = {
+    total: data?.amount,
+    stripe_id: data?.id,
     fufilled: false,
-    created_at: data.created,
-    currency: data.currency,
-    payment_method: data.payment_method,
-    shipping: data.shipping,
-    metadata: data.metadata,
-    customer: data.shipping_name,
+    created_at: data?.created,
+    currency: data?.currency,
+    payment_method: data?.payment_method,
+    shipping: data?.shipping,
+    metadata: data?.metadata,
+    customer: data?.shipping?.name,
     cart,
-  })
+  }
+  return await orders.add(order)
 }
 
 
-function getCustomer(req, res) {
+async function getCustomer(req: express.Request, res: express.Response) {
   const data = await stripe.customers.retrieve(req.body.customer_id)
   res.status(200).json(data)
 }
 
-function createCustomer(req, res) {
+async function createCustomer(req: express.Request, res: express.Response) {
   try {
     const data = await stripe.customers.create(req.body)
     res.status(201).json(data)
