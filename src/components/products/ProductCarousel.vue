@@ -28,7 +28,8 @@
 
 <script>
 import { firestore } from '../../../firebase.config'
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   components: {},
   data() {
     return {
@@ -56,7 +57,7 @@ export default {
       this.$router.push('product')
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

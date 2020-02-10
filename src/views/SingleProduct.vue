@@ -57,6 +57,7 @@
         </div>
       </div>
     </div>
+    
     <div class="row">
       <div class="col-lg p-5">
         <h5 class="is-size-5 mb-3">
@@ -136,7 +137,9 @@
 
 <script>
 import Layout from '../components/Layout'
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
   data() {
     return {
       product: this.$store.state.currentProduct,
@@ -172,7 +175,7 @@ export default {
       this.$store.commit('addToCart', cartItem)
     }
   }
-}
+})
 </script>
 
 <style scoped>

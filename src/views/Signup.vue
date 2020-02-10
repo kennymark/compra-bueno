@@ -42,8 +42,9 @@
 
 <script>
 import { auth, firestore } from '../../firebase.config'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   name: 'Signup',
   components: {},
   data() {
@@ -84,7 +85,7 @@ export default {
       .then(console.log)
       .catch(console.log)
   }
-}
+})
 </script>
 
 <style scoped>

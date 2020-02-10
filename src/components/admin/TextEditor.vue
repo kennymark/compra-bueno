@@ -137,6 +137,7 @@
 
 <script>
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
+import Vue from 'vue'
 import {
   Blockquote,
   CodeBlock,
@@ -156,14 +157,16 @@ import {
   Underline,
   History
 } from 'tiptap-extensions'
-export default {
+export default Vue.extend({
   components: {
     EditorContent,
     EditorMenuBar,
   },
-  props: ['content'],
+  props: {content:{type:String, default:''}},
+  
   data() {
     return {
+
       editor: new Editor({
         extensions: [
           new Blockquote(),
@@ -188,8 +191,10 @@ export default {
       })
     }
   },
+ 
+
   beforeDestroy() {
     this.editor.destroy()
   }
-}
+})
 </script>

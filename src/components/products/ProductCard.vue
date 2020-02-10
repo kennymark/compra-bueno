@@ -30,7 +30,8 @@
   </span>
 </template>
 <script>
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   props: { product: { type: Object, default: () => {} } },
   methods: {
     addToCart(product) {
@@ -51,7 +52,7 @@ export default {
       })
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

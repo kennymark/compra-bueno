@@ -52,7 +52,8 @@
 
 <script>
 import CartProduct from './CartProduct'
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   name: 'CartSideBar',
   components: { CartProduct },
   props: { isCartOpen: { type: Boolean, default: () => false } },
@@ -72,7 +73,7 @@ export default {
       this.$store.commit('openCart', false)
     }
   }
-}
+})
 </script>
 
 <style scoped>

@@ -31,7 +31,9 @@
 <script>
 import ProductCard from '../components/products/ProductCard'
 import { firestore } from '../../firebase.config'
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'Products',
   components: {
     ProductCard
@@ -87,7 +89,7 @@ export default {
       // )
     }
   }
-}
+})
 </script>
 
 

@@ -198,8 +198,9 @@ import { Card, createToken } from 'vue-stripe-elements-plus'
 import CartProduct from '../components/products/CartProduct'
 import { auth } from '../../firebase.config'
 import countries from '../assets/countries'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   name: 'Checkout',
   components: { CartProduct, Card },
 
@@ -299,7 +300,7 @@ export default {
       })
     }
   }
-}
+})
 </script>
 
 <style scoped>

@@ -45,8 +45,9 @@
 import 'vue-good-table/dist/vue-good-table.css'
 import { VueGoodTable } from 'vue-good-table'
 import { columns, rows } from '../table-data'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   components: { VueGoodTable },
   data() {
     return {
@@ -57,10 +58,11 @@ export default {
   },
   methods: {
     onRowClick(data) {
+    this.$router.push(`customers/details/${data.row.id}`)
       console.log(data.row)
     }
   }
-}
+})
 </script>
 
 <style scoped>

@@ -113,7 +113,8 @@
 
 <script>
 import editor from '../../../components/admin/TextEditor'
-export default {
+import Vue from 'vue'
+export default Vue.extend({
 components:{
   editor
   },
@@ -128,39 +129,13 @@ components:{
       }
     }
   },
-  mounted() {
-    this.editor = new Editor({
-      extensions: [
-        new Blockquote(),
-        new BulletList(),
-        new CodeBlock(),
-        new HardBreak(),
-        new Heading({ levels: [1, 2, 3] }),
-        new HorizontalRule(),
-        new ListItem(),
-        new OrderedList(),
-        new TodoItem(),
-        new TodoList(),
-        new Link(),
-        new Bold(),
-        new Code(),
-        new Italic(),
-        new Strike(),
-        new Underline(),
-        new History()
-      ],
-      content: this.product.descriptions[0].value
-    })
-  },
-  beforeDestroy() {
-    this.editor.destroy()
-  },
+  
 
   methods: {
     onSubmit() {},
     onReset() {}
   }
-}
+})
 </script>
 
 <style >

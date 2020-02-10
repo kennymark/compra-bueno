@@ -19,10 +19,9 @@ Vue.use(Buefy)
 Vue.use(VueTimeago, { locale: 'en' })
 
 Vue.component("CartProduct", CartProduct)
-Vue.component("CartSideBar", CartSideBar)
 Vue.component("Layout", Layout)
 
 Vue.config.productionTip = false
 
 
-new Vue({router,store,render: h => h(App)}).$mount('#app')
+new Vue({ router, store, render: h => h(App) }).$mount('#app')

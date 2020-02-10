@@ -11,7 +11,9 @@ import Featured from '../components/products/FeaturedProducts'
 import data from './admin/mens_shoe_dataset.json'
 import { firestore } from '../../firebase.config'
 import uniq from 'lodash/uniqBy'
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'Home',
   components: { Carousel, Featured },
   mounted() {
@@ -69,5 +71,5 @@ export default {
       // db.add(prod)
     })
   }
-}
+})
 </script>

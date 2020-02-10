@@ -27,7 +27,8 @@
 </template>
 
 <script>
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   name: 'PaymentResultModal',
   // components: {  },
   props: { isCartOpen: Boolean },
@@ -44,7 +45,7 @@ export default {
       this.$router.push('/')
     }
   }
-}
+})
 </script>
 
 <style scoped>

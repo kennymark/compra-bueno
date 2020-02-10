@@ -83,7 +83,9 @@
 </template>
 <script>
 import { auth } from '../../firebase.config'
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
   data() {
     return {}
   },
@@ -98,7 +100,7 @@ export default {
       this.$store.commit('openCart', true)
     }
   }
-}
+})
 </script>
 
 <style >

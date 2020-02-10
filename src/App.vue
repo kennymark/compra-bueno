@@ -12,6 +12,7 @@
 import Vue from 'vue'
 import Nav from './components/Nav.vue'
 import Footer from './components/Footer.vue'
+import CartSideBar from '@/components/products/CartSideBar.vue'
 
 export default Vue.extend({
   name: 'App',

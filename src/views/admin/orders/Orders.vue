@@ -35,7 +35,8 @@
 import { firestore } from '../../../../firebase.config'
 import 'vue-good-table/dist/vue-good-table.css'
 import { VueGoodTable } from 'vue-good-table'
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   components: { VueGoodTable },
   data() {
     return {
@@ -70,10 +71,11 @@ export default {
   },
   methods: {
     onRowClick(params) {
+    this.$router.push(`orders/details/${params.row.id}`)
       console.log(params.row)
     }
   }
-}
+})
 </script>
 
 <style scoped>

@@ -56,7 +56,8 @@
 </template>
 
 <script>
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   name: 'CartProduct',
   // eslint-disable-next-line vue/require-prop-types
   props: ['length', 'product'],
@@ -71,7 +72,7 @@ export default {
       this.$store.commit('removeFromCart', product)
     }
   }
-}
+})
 </script>
 
 <style scoped>

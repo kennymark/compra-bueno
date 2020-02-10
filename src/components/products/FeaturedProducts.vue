@@ -25,7 +25,8 @@
 <script>
 import { firestore } from '../../../firebase.config'
 import Product from './ProductCard'
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   components: { Product },
 
   data() {
@@ -50,6 +51,6 @@ export default {
       this.$router.push('product')
     }
   }
-}
+})
 </script>
 

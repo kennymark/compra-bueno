@@ -136,8 +136,8 @@
 
 <script>
 import { firestore } from '../../../firebase.config'
-
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   data() {
     return {
       activities: new Array(25),
@@ -187,7 +187,7 @@ export default {
       })
     }
   }
-}
+})
 </script>
 
 <style scoped>

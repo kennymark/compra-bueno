@@ -46,8 +46,9 @@
 
 <script>
 import { auth } from '../../firebase.config'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   name: 'Login',
   components: {},
   data() {
@@ -76,7 +77,7 @@ export default {
         })
     }
   }
-}
+})
 </script>
 
 <style scoped>
