@@ -27,6 +27,12 @@ import OrdersIndex from '@/views/admin/orders/Index.vue'
 import Orders from '@/views/admin/orders/Orders.vue'
 import OrderDetails from '@/views/admin/orders/OrderDetails.vue'
 
+import ConfigIndex from '@/views/admin/config/Index.vue'
+import Configuration from '@/views/admin/config/Configuration.vue'
+import CategoriesIndex from '@/views/admin/categories/Index.vue'
+import Categories from '@/views/admin/categories/Categories.vue'
+
+//Products
 import AdminProductsIndex from '@/views/admin/products/Index.vue'
 import AdminProducts from '@/views/admin/products/Products.vue'
 import AddProduct from '@/views/admin/products/AddProduct.vue'
@@ -77,6 +83,16 @@ const routes: RouteConfig[] = [
           { name: 'order-details', path: 'details/:id', component: OrderDetails, meta: { requiresAuth: true } }
         ]
       },
+      {
+        path: 'config', component: ConfigIndex, meta: { requiresAuth: true },
+        children: [{ path: '', component: Configuration, meta: { requiresAuth: true } }]
+      },
+      {
+        path: 'categories', component: CategoriesIndex, meta: { requiresAuth: true },
+        children: [
+          { name: '', path: '', component: Categories, meta: { requiresAuth: true } }
+        ]
+      }
     ]
   },
   {

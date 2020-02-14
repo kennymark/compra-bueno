@@ -11,6 +11,7 @@
         Payment Successfull
       </h3>
 
+
       <p>You have sucessfully purchased</p>
 
       <div class="w-100 p-2 border-top">

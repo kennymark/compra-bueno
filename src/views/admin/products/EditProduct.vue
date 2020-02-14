@@ -3,6 +3,12 @@
     <h3 class="is-size-3 my-3">
       Edit Product
     </h3>
+    <small>
+      <b-switch
+        v-model="isLive"
+        type="is-success"
+      >Enabled</b-switch>
+    </small>
     <div class="row">
       <div
         class="col-lg-4 border d-flex bg-white flex-column justify-content-center"

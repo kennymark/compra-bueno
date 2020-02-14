@@ -5,6 +5,9 @@
     </h3>
 
     <div class="row mt-5 mb-4">
+      <b-button type="is-dark">
+        Sign out
+      </b-button>
       <div class="col-lg d-flex justify-content-center p-3">
         <h3 class="is-size-5 font-weight-light">
           You have spent
@@ -37,8 +40,8 @@
       <div
         v-for="(option,key) in accountOptions"
         :key="key"
-        class="col-lg p-3 rounded-lg border shadow-sm m-3"
-        @click="visitPage(option.link)"
+        class="col-lg p-3 rounded-lg border bg-white shadow-sm m-3"
+        @click="visitPage('account/'+option.link)"
       >
         <h5 class="is-size-5 text-center font-weight-bold">
           {{ option.title | capitalize }}

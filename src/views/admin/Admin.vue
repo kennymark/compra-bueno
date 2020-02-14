@@ -29,13 +29,11 @@ export default Vue.extend({
       items: [
         { title: 'Overview', icon: 'home-city', route: '' },
         { title: 'Products', icon: 'mdi-account', route: 'products' },
+        { title: 'Categories', icon: 'mdi-account', route: 'categories' },
+      
         { title: 'Customers', icon: 'mdi-account', route: 'customers' },
-        {
-          title: 'Orders',
-          icon: 'mdi-account-group-outline',
-          route: 'orders'
-        }
-        // { title: 'Logout', icon: 'mdi-account-group-outline', route: 'logout' }
+        {title: 'Orders', icon: 'mdi-account',route: 'orders'},
+        { title: 'Configuration', icon: 'mdi-account-group-outline', route: 'config' }
       ]
     }
   }

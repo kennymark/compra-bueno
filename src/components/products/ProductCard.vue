@@ -2,7 +2,7 @@
   <span>
     <div
       class="card card-hover border-0 shadow-sm rounded-lg"
-      style="height:350px; cursor:pointer"
+      style="height:280px; cursor:pointer"
       @click="viewProduct(product)"
     >
       <div class="card-image">
@@ -13,19 +13,20 @@
           >
         </figure>
       </div>
-      <div class="card-content">
-        <p class="text-center text-dark text-muted">{{ product.name | truncate(30) }}</p>
-      </div>
+      <!-- <div class="card-content" /> -->
     </div>
 
-    <div class="d-flex justify-content-between py-2">
+    <div class="d-flex justify-content-between align-items-center py-2">
+    
+      <p class=" text-dark text-muted">{{ product.name | truncate(20) }}</p>
+      
+      <h2 class="align-self-center has-text-dark">£{{ product.price.max }}</h2>
       <b-button
         type="is-warning"
-        class="shadow-sm font-weight-bold"
+        class="shadow-sm"
         icon-left="clipboard-plus"
         @click="addToCart(product)"
-      >Add To Cart</b-button>
-      <h2 class="align-self-center has-text-dark">£{{ product.price.max }}</h2>
+      />
     </div>
   </span>
 </template>

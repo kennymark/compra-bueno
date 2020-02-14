@@ -26,11 +26,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Screenshots
 
-![](./screenshots/home.png)
-![](./screenshots/cart.png)
-![](./screenshots/adminproducts.png)
-![](./screenshots/adminpage.png)
-![](./screenshots/my_account.png)
-![](./screenshots/products.png)
+![home](./screenshots/home.png)
+![cart](./screenshots/cart.png)
+![empty cart](./screenshots/empty_cart.png)
+![admin products page](./screenshots/adminproducts.png)
+![admin index page](./screenshots/adminpage.png)
+![my accounts page](./screenshots/my_account.png)
+![all products page](./screenshots/products.png)
+
 
 

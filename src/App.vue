@@ -16,7 +16,7 @@ import CartSideBar from '@/components/products/CartSideBar.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { Nav },
+  components: { Nav, CartSideBar },
   methods: {
     closeCart() {
       console.log('close cart')
@@ -27,7 +27,7 @@ export default Vue.extend({
 </script>
 
 <style lang='scss'>
-$bg: #f1f1f162;
+$bg: #fafcff;
 body {
   font-family: 'Poppins', sans-serif !important;
   background: $bg !important;

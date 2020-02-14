@@ -40,9 +40,15 @@
           :product="product"
         />
       </div>
+      <img
+        v-if="!cart.length"
+        :src="emptyCart"
+        alt=""
+        class="mt-5"
+      >
       <h5
         v-if="!cart.length"
-        class="text-center m-3 border-0 mt-5 has-text-weight-bold"
+        class="text-center m-3 border-0 mt-5 has-text-weight-bold is-size-4 text-muted"
       >
         Cart is empty
       </h5>
@@ -60,7 +66,8 @@ export default Vue.extend({
   data() {
     return {
       value: '',
-      cart: this.$store.state.cart
+      cart: this.$store.state.cart,
+      emptyCart: require('../../../src/assets/empty_cart.svg')
     }
   },
   methods: {
